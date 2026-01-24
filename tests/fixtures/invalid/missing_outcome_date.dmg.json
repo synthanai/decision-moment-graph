@@ -1,0 +1,39 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "test-invalid-004",
+        "title": "Missing outcome check date",
+        "options": [
+            {
+                "name": "A",
+                "description": "Option A"
+            },
+            {
+                "name": "B",
+                "description": "Option B"
+            },
+            {
+                "name": "C",
+                "description": "Option C"
+            }
+        ],
+        "ramp": {
+            "level": 3
+        }
+    },
+    "objects": {
+        "dissents": [
+            {
+                "dissent_id": "d1",
+                "author": "Jane",
+                "claim": "Concern",
+                "conditions_to_change_mind": "If X"
+            }
+        ],
+        "commit": {
+            "state": "Final"
+        },
+        "outcome": {}
+    },
+    "_test_notes": "Should fail: Final state requires outcome.next_check_date"
+}

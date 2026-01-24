@@ -1,0 +1,24 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "test-minimal-001",
+        "title": "Should we use TypeScript?",
+        "options": [
+            {
+                "name": "Yes",
+                "description": "Adopt TypeScript"
+            },
+            {
+                "name": "No",
+                "description": "Stay with JavaScript"
+            },
+            {
+                "name": "Gradual",
+                "description": "Adopt gradually on new files"
+            }
+        ],
+        "ramp": {
+            "level": 2
+        }
+    }
+}
