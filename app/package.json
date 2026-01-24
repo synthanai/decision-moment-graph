@@ -1,0 +1,18 @@
+{
+    "name": "dmg-app",
+    "version": "0.1.0",
+    "description": "Decision Moment Graph - Local-first decision governance app",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "idb": "^8.0.0",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "vite": "^5.0.0"
+    }
+}
