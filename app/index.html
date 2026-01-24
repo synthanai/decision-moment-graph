@@ -21,6 +21,7 @@
                 <span class="tagline">Decision Moment Graph</span>
             </div>
             <div class="header-right">
+                <button id="spar-btn" class="btn btn-spar">🥊 SPAR First</button>
                 <button id="new-memo-btn" class="btn btn-primary">+ New MEMO</button>
                 <button id="export-btn" class="btn btn-secondary">Export</button>
             </div>
@@ -181,6 +182,132 @@
                     <button id="save-memo" class="btn btn-primary">Save MEMO</button>
                     <button id="cancel-memo" class="btn btn-secondary">Cancel</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- SPAR Modal -->
+        <div id="spar-modal" class="modal" style="display: none;">
+            <div class="modal-content spar-modal">
+                <div class="modal-header spar-header">
+                    <h2>🥊 SPAR — Deliberate First</h2>
+                    <button id="close-spar-modal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="spar-question">Decision Question</label>
+                        <input type="text" id="spar-question" placeholder="Should we build or buy X?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spar-context">Context (optional)</label>
+                        <textarea id="spar-context" rows="2"
+                            placeholder="Any constraints, assumptions, or background..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deliberation Mode</label>
+                        <div class="spar-mode-selector">
+                            <button class="spar-mode-btn active" data-mode="quick">
+                                ⚡ Quick<br><small>2 agents, 30s</small>
+                            </button>
+                            <button class="spar-mode-btn" data-mode="balanced">
+                                ⚖️ Balanced<br><small>4 agents, 1m</small>
+                            </button>
+                            <button class="spar-mode-btn" data-mode="deep">
+                                🔮 Deep<br><small>8 agents, 3m</small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="spar-status" class="spar-status" style="display: none;">
+                        <div class="spar-spinner"></div>
+                        <span id="spar-status-text">Running SPAR deliberation...</span>
+                    </div>
+
+                    <div id="spar-result" class="spar-result" style="display: none;">
+                        <h3>Synthesis</h3>
+                        <div id="spar-recommendation" class="spar-recommendation"></div>
+                        <h4>Options Identified</h4>
+                        <div id="spar-options" class="spar-options"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="run-spar" class="btn btn-spar">🥊 Run SPAR</button>
+                    <button id="spar-to-memo" class="btn btn-primary" style="display: none;">→ Create MEMO</button>
+                    <button id="cancel-spar" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outcome Check Modal -->
+        <div id="outcome-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📊 Outcome Check</h2>
+                    <button id="close-outcome-modal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="outcome-header">
+                        <h3 id="outcome-memo-title">Decision Title</h3>
+                        <span id="outcome-check-date" class="outcome-date"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outcome-actual">What actually happened?</label>
+                        <textarea id="outcome-actual" rows="3" placeholder="Describe the actual outcome..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Assumptions Audit</label>
+                        <div id="assumptions-audit" class="audit-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dissent Audit</label>
+                        <div id="dissent-audit" class="audit-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outcome-verdict">Verdict</label>
+                        <div class="verdict-selector">
+                            <button class="verdict-btn" data-verdict="keep">
+                                ✅ Keep<br><small>Decision stands</small>
+                            </button>
+                            <button class="verdict-btn" data-verdict="adjust">
+                                🔧 Adjust<br><small>Minor corrections</small>
+                            </button>
+                            <button class="verdict-btn" data-verdict="reverse">
+                                ↩️ Reverse<br><small>Undo decision</small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outcome-next-action">Next Action</label>
+                        <input type="text" id="outcome-next-action" placeholder="What should we do now?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outcome-next-date">Next Check Date (optional)</label>
+                        <input type="date" id="outcome-next-date">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-outcome" class="btn btn-primary">Save Outcome Check</button>
+                    <button id="cancel-outcome" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Outcomes Panel -->
+        <div id="upcoming-outcomes" class="upcoming-outcomes" style="display: none;">
+            <h4>📅 Upcoming Outcome Checks</h4>
+            <div id="upcoming-list" class="upcoming-list">
+                <!-- Populated dynamically -->
             </div>
         </div>
     </div>
