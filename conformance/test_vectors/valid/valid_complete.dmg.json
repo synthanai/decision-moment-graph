@@ -1,0 +1,129 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "valid-complete",
+        "title": "Complete Valid Decision with All Objects",
+        "decision": "A complete DMG document demonstrating all object types",
+        "options": [
+            {
+                "id": "a",
+                "title": "Option A",
+                "rationale": "First option with full rationale"
+            },
+            {
+                "id": "b",
+                "title": "Option B",
+                "rationale": "Second option with full rationale"
+            },
+            {
+                "id": "c",
+                "title": "Option C",
+                "rationale": "Third option with full rationale"
+            }
+        ],
+        "recommendation": "a",
+        "ramp": {
+            "level": 3,
+            "justification": "Moderate impact decision",
+            "time_to_undo": "2 weeks"
+        },
+        "context": {
+            "constraints": [
+                "Budget limited",
+                "Timeline fixed"
+            ],
+            "assumptions": [
+                "Team capacity stable",
+                "Requirements stable"
+            ]
+        },
+        "expected_outcomes": [
+            {
+                "metric": "Success rate",
+                "predicted": "80%",
+                "confidence": 0.7
+            }
+        ]
+    },
+    "moment": {
+        "moment_id": "valid-complete-log",
+        "memo_id": "valid-complete",
+        "events": [
+            {
+                "event_id": "e1",
+                "seq": 1,
+                "ts": "2026-01-26T00:00:00Z",
+                "type": "MEMO_CREATED",
+                "actor": "test@example.com",
+                "payload": {},
+                "prev_hash": "",
+                "hash": "abc123"
+            },
+            {
+                "event_id": "e2",
+                "seq": 2,
+                "ts": "2026-01-26T01:00:00Z",
+                "type": "DISSENT_ADDED",
+                "actor": "reviewer@example.com",
+                "payload": {
+                    "dissent_id": "d1"
+                },
+                "prev_hash": "abc123",
+                "hash": "def456"
+            }
+        ]
+    },
+    "objects": {
+        "dissents": [
+            {
+                "dissent_id": "d1",
+                "author": "reviewer@example.com",
+                "claim": "Option B might be better",
+                "evidence": [
+                    "Prior experience with similar decisions"
+                ],
+                "conditions_to_change_mind": "If Option A shows faster results",
+                "resolution": {
+                    "type": "acknowledged",
+                    "response": "Valid concern, will monitor closely"
+                }
+            }
+        ],
+        "doors": {
+            "declare": "Proceeding with Option A",
+            "observe": [
+                "Success rate",
+                "Team velocity"
+            ],
+            "own": {
+                "name": "Test Owner",
+                "role": "Decision Owner"
+            },
+            "ready": "Can revert to Option B if metrics decline",
+            "signals": [
+                {
+                    "metric": "Success rate",
+                    "threshold": "< 50%",
+                    "horizon": "4 weeks",
+                    "action": "Reconsider"
+                }
+            ]
+        },
+        "traces": [
+            {
+                "trace_id": "t1",
+                "claim": "Option A is recommended by industry experts",
+                "source": {
+                    "type": "article",
+                    "uri": "https://example.com/article"
+                },
+                "strength": "strong"
+            }
+        ],
+        "outcome": {
+            "outcome_id": "o1",
+            "next_check_date": "2026-03-26",
+            "checks": []
+        }
+    }
+}

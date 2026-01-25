@@ -1,0 +1,43 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "too-few-options",
+        "title": "Test",
+        "decision": "Only has 2 options instead of 3",
+        "options": [
+            {
+                "id": "a",
+                "title": "A",
+                "rationale": "R"
+            },
+            {
+                "id": "b",
+                "title": "B",
+                "rationale": "R"
+            }
+        ],
+        "recommendation": "a",
+        "ramp": {
+            "level": 1,
+            "justification": "L",
+            "time_to_undo": "1h"
+        }
+    },
+    "moment": {
+        "moment_id": "m1",
+        "memo_id": "too-few-options",
+        "events": [
+            {
+                "event_id": "e1",
+                "seq": 1,
+                "ts": "2026-01-26T00:00:00Z",
+                "type": "MEMO_CREATED",
+                "actor": "test@example.com",
+                "payload": {},
+                "prev_hash": "",
+                "hash": "abc"
+            }
+        ]
+    },
+    "_expected_error": "E011"
+}

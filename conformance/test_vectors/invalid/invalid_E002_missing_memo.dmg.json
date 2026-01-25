@@ -1,0 +1,9 @@
+{
+    "dmg_version": "0.1",
+    "moment": {
+        "moment_id": "m1",
+        "memo_id": "missing-memo",
+        "events": []
+    },
+    "_expected_error": "E002"
+}

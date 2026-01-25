@@ -1,0 +1,47 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "valid-minimal",
+        "title": "Minimal Valid Decision",
+        "decision": "A minimal valid DMG decision document",
+        "options": [
+            {
+                "id": "a",
+                "title": "Option A",
+                "rationale": "First option"
+            },
+            {
+                "id": "b",
+                "title": "Option B",
+                "rationale": "Second option"
+            },
+            {
+                "id": "c",
+                "title": "Option C",
+                "rationale": "Third option"
+            }
+        ],
+        "recommendation": "a",
+        "ramp": {
+            "level": 1,
+            "justification": "Low impact",
+            "time_to_undo": "1 hour"
+        }
+    },
+    "moment": {
+        "moment_id": "valid-minimal-log",
+        "memo_id": "valid-minimal",
+        "events": [
+            {
+                "event_id": "e1",
+                "seq": 1,
+                "ts": "2026-01-26T00:00:00Z",
+                "type": "MEMO_CREATED",
+                "actor": "test@example.com",
+                "payload": {},
+                "prev_hash": "",
+                "hash": "abc123"
+            }
+        ]
+    }
+}
