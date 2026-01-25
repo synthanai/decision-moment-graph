@@ -3,11 +3,12 @@
 DMG Validator CLI
 
 Validates DMG (Decision Moment Graph) files against the core schema
-and governance rules.
+and governance rules. Supports MERIT principle validation.
 
 Usage:
     python dmg_validate.py <file.dmg.json>
     python dmg_validate.py --batch <directory>
+    python dmg_validate.py --merit <file.dmg.json>
 """
 
 import json
@@ -20,6 +21,15 @@ from datetime import datetime
 # Schema version
 DMG_VERSION = "0.1"
 
+# MERIT thresholds (per MERIT_VALIDATOR_SPEC.md)
+MERIT_THRESHOLDS = {
+    "measured": 0.6,
+    "evidenced": 0.7,
+    "reversible": 0.7,
+    "inspectable": 0.7,
+    "traceable": 0.7
+}
+
 
 class ValidationError:
     def __init__(self, code: str, message: str, path: str = ""):
@@ -31,6 +41,219 @@ class ValidationError:
         if self.path:
             return f"[{self.code}] {self.path}: {self.message}"
         return f"[{self.code}] {self.message}"
+
+
+class MERITValidator:
+    """
+    Validates DMG files against the MERIT principles.
+    
+    MERIT = Measured with OUTCOME, Evidenced via MEMO, 
+            Reversible thru DOORS, Inspectable in MOMENT, Traceable by TRACE
+    """
+
+    def validate(self, dmg: Dict[str, Any]) -> Dict[str, Any]:
+        """Returns MERIT validation results."""
+        results = {
+            "measured": self._check_measured(dmg),
+            "evidenced": self._check_evidenced(dmg),
+            "reversible": self._check_reversible(dmg),
+            "inspectable": self._check_inspectable(dmg),
+            "traceable": self._check_traceable(dmg)
+        }
+        
+        # Calculate passes
+        passes = sum(1 for k, v in results.items() 
+                     if v["score"] >= MERIT_THRESHOLDS[k])
+        
+        # Determine level
+        if passes == 5:
+            level = "MERIT-Valid"
+        elif passes >= 3:
+            level = "MERIT-Partial"
+        else:
+            level = "MERIT-None"
+        
+        return {
+            "principles": results,
+            "passes": passes,
+            "total": 5,
+            "level": level
+        }
+
+    def _check_measured(self, dmg: Dict) -> Dict:
+        """M: Measured with OUTCOME - quantified outcomes linked to predictions."""
+        score = 0.0
+        details = []
+        
+        outcome = dmg.get("objects", {}).get("outcome", {})
+        
+        # M1: OUTCOME exists (40%)
+        if outcome:
+            score += 0.40
+            details.append("✓ OUTCOME object exists")
+            
+            # M2: next_check_date is set (30%)
+            if outcome.get("next_check_date"):
+                score += 0.30
+                details.append("✓ next_check_date scheduled")
+            else:
+                details.append("✗ next_check_date not set")
+            
+            # M3: checks[] linked to expected_outcomes (30%)
+            checks = outcome.get("checks", [])
+            memo = dmg.get("memo", {})
+            expected = memo.get("expected_outcomes", [])
+            
+            if checks and expected:
+                score += 0.30
+                details.append("✓ Outcome checks with predictions")
+            elif expected:
+                score += 0.15  # Partial credit for having predictions
+                details.append("◐ Expected outcomes defined, no checks yet")
+            else:
+                details.append("✗ No expected_outcomes defined")
+        else:
+            details.append("✗ No OUTCOME object")
+        
+        return {"score": round(score, 2), "details": details}
+
+    def _check_evidenced(self, dmg: Dict) -> Dict:
+        """E: Evidenced via MEMO - documented options with rationale."""
+        score = 0.0
+        details = []
+        
+        memo = dmg.get("memo", {})
+        
+        # E1: MEMO exists with decision (30%)
+        if memo and memo.get("decision"):
+            score += 0.30
+            details.append("✓ MEMO with decision")
+            
+            # E2: At least 3 options (40%)
+            options = memo.get("options", [])
+            if len(options) >= 3:
+                score += 0.40
+                details.append(f"✓ {len(options)} options documented")
+                
+                # E3: Options have rationale (30%)
+                if all(opt.get("rationale") or (opt.get("pros") and opt.get("cons")) 
+                       for opt in options):
+                    score += 0.30
+                    details.append("✓ All options have rationale")
+                else:
+                    details.append("✗ Some options missing rationale")
+            else:
+                details.append(f"✗ Only {len(options)} options (need 3+)")
+        else:
+            details.append("✗ No MEMO or decision")
+        
+        return {"score": round(score, 2), "details": details}
+
+    def _check_reversible(self, dmg: Dict) -> Dict:
+        """R: Reversible thru DOORS - governance gates and rollback paths."""
+        score = 0.0
+        details = []
+        
+        doors = dmg.get("objects", {}).get("doors", {})
+        
+        # R1: DOORS object exists (30%)
+        if doors:
+            score += 0.30
+            details.append("✓ DOORS object exists")
+            
+            # R2: Owner defined (40%)
+            own = doors.get("own", {})
+            if own.get("name"):
+                score += 0.40
+                details.append(f"✓ Owner: {own.get('name')}")
+            else:
+                details.append("✗ No ownership defined")
+            
+            # R3: Rollback path (ready) defined (30%)
+            if doors.get("ready"):
+                score += 0.30
+                details.append("✓ Rollback path documented")
+            else:
+                details.append("✗ No rollback path (ready)")
+        else:
+            details.append("✗ No DOORS object")
+        
+        return {"score": round(score, 2), "details": details}
+
+    def _check_inspectable(self, dmg: Dict) -> Dict:
+        """I: Inspectable in MOMENT - audit trail with valid hash chain."""
+        score = 0.0
+        details = []
+        
+        moment = dmg.get("moment", {})
+        events = moment.get("events", [])
+        
+        # I1: MOMENT exists with events (40%)
+        if events:
+            score += 0.40
+            details.append(f"✓ {len(events)} events in MOMENT")
+            
+            # I2: Events have required fields (30%)
+            required = ["event_id", "seq", "ts", "type", "actor"]
+            if all(all(e.get(f) for f in required) for e in events):
+                score += 0.30
+                details.append("✓ Events have required fields")
+            else:
+                details.append("✗ Some events missing fields")
+            
+            # I3: Hash chain is valid (30%)
+            if len(events) > 1:
+                chain_valid = True
+                prev_hash = ""
+                for e in events:
+                    if e.get("prev_hash", "") != prev_hash:
+                        chain_valid = False
+                        break
+                    prev_hash = e.get("hash", "")
+                
+                if chain_valid:
+                    score += 0.30
+                    details.append("✓ Hash chain valid")
+                else:
+                    details.append("✗ Hash chain broken")
+            else:
+                score += 0.30  # Single event, chain trivially valid
+                details.append("✓ Single event (chain trivially valid)")
+        else:
+            details.append("✗ No events in MOMENT")
+        
+        return {"score": round(score, 2), "details": details}
+
+    def _check_traceable(self, dmg: Dict) -> Dict:
+        """T: Traceable by TRACE - evidence provenance chain."""
+        score = 0.0
+        details = []
+        
+        traces = dmg.get("objects", {}).get("traces", [])
+        
+        # T1: TRACE objects exist (40%)
+        if traces:
+            score += 0.40
+            details.append(f"✓ {len(traces)} TRACE objects")
+            
+            # T2: All traces have source provenance (30%)
+            if all(t.get("source", {}).get("uri") or t.get("source", {}).get("type") 
+                   for t in traces):
+                score += 0.30
+                details.append("✓ All traces have source")
+            else:
+                details.append("✗ Some traces missing source")
+            
+            # T3: At least one strong trace (30%)
+            if any(t.get("strength") == "strong" for t in traces):
+                score += 0.30
+                details.append("✓ Has strong evidence")
+            else:
+                details.append("◐ No 'strong' evidence (medium/weak only)")
+        else:
+            details.append("✗ No TRACE objects")
+        
+        return {"score": round(score, 2), "details": details}
 
 
 class DMGValidator:
@@ -215,7 +438,7 @@ class DMGValidator:
             prev_hash = event["hash"]
 
 
-def validate_file(filepath: Path) -> bool:
+def validate_file(filepath: Path, merit_mode: bool = False) -> bool:
     """Validate a single DMG file."""
     print(f"\n📋 Validating: {filepath.name}")
     print("-" * 50)
@@ -242,9 +465,35 @@ def validate_file(filepath: Path) -> bool:
         print(f"❌ {e}")
 
     if is_valid:
-        print(f"✅ VALID ({len(warnings)} warnings)")
+        print(f"✅ Schema: VALID ({len(warnings)} warnings)")
     else:
-        print(f"❌ INVALID ({len(errors)} errors, {len(warnings)} warnings)")
+        print(f"❌ Schema: INVALID ({len(errors)} errors, {len(warnings)} warnings)")
+
+    # MERIT validation
+    if merit_mode:
+        print("\n" + "=" * 50)
+        print("MERIT VALIDATION")
+        print("=" * 50)
+        
+        merit_validator = MERITValidator()
+        result = merit_validator.validate(dmg)
+        
+        # Print each principle
+        for name, data in result["principles"].items():
+            initial = name[0].upper()
+            passed = data["score"] >= MERIT_THRESHOLDS[name]
+            status = "✓" if passed else "✗"
+            print(f"\n{initial}: {name.capitalize()} ({data['score']:.0%})")
+            for detail in data["details"]:
+                print(f"   {detail}")
+        
+        # Print summary
+        print("\n" + "-" * 50)
+        level_emoji = {"MERIT-Valid": "🟢", "MERIT-Partial": "🟡", "MERIT-None": "🔴"}
+        print(f"{level_emoji.get(result['level'], '⚪')} {result['level']} ({result['passes']}/{result['total']} principles)")
+        
+        # Return based on MERIT level (accept Partial or Valid)
+        return result["passes"] >= 3
 
     return is_valid
 
@@ -253,13 +502,17 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: python dmg_validate.py <file.dmg.json>")
         print("       python dmg_validate.py --batch <directory>")
+        print("       python dmg_validate.py --merit <file.dmg.json>")
         sys.exit(1)
 
-    if sys.argv[1] == "--batch":
-        if len(sys.argv) < 3:
+    merit_mode = "--merit" in sys.argv
+    args = [a for a in sys.argv[1:] if a != "--merit"]
+
+    if args[0] == "--batch":
+        if len(args) < 2:
             print("Error: --batch requires a directory path")
             sys.exit(1)
-        directory = Path(sys.argv[2])
+        directory = Path(args[1])
         files = list(directory.glob("*.dmg.json"))
         if not files:
             print(f"No *.dmg.json files found in {directory}")
@@ -267,7 +520,7 @@ def main():
 
         results = []
         for f in files:
-            results.append((f.name, validate_file(f)))
+            results.append((f.name, validate_file(f, merit_mode)))
 
         print("\n" + "=" * 50)
         print("SUMMARY")
@@ -280,10 +533,11 @@ def main():
         print(f"\nTotal: {passed} passed, {failed} failed")
         sys.exit(0 if failed == 0 else 1)
     else:
-        filepath = Path(sys.argv[1])
-        is_valid = validate_file(filepath)
+        filepath = Path(args[0])
+        is_valid = validate_file(filepath, merit_mode)
         sys.exit(0 if is_valid else 1)
 
 
 if __name__ == "__main__":
     main()
+
