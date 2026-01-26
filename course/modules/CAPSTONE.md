@@ -252,7 +252,7 @@ You now know how to:
 
 ## The Movement
 
-> **Stop storing chats. Store decision objects.**
+> **Store decision moments, not raw chats, objects or data.**
 
 DMG makes decisions:
 - Structured (not narratives)

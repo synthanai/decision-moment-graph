@@ -13,7 +13,7 @@ By the end of this course, you will:
 
 ## What is DMG?
 
-> **Stop storing chats. Store decision objects.**
+> **Store decision moments, not raw chats, objects or data.**
 
 DMG is an open standard for decision governance. It makes decisions:
 - **Structured** — not narratives

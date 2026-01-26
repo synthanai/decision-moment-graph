@@ -12,7 +12,7 @@ Add `OUTCOME` as a required first-class object in the DMG specification, enablin
 
 ## Motivation
 
-> "Store decision objects, not chats."
+> "Store decision moments, not raw chats, objects or data."
 
 Current decision systems capture the *decision* but not the *learning*. Without structured outcome tracking:
 

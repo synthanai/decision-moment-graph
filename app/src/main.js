@@ -1,6 +1,6 @@
 /**
  * DMG App — Main Entry Point
- * Decision Moment Graph: Stop storing chats. Store decision objects.
+ * Decision Moment Graph: Store decision moments, not raw chats, objects or data.
  */
 
 import { DMGStore } from './stores/dmg-store.js';

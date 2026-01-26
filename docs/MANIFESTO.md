@@ -2,7 +2,7 @@
 
 ## The Declaration
 
-**Stop storing chats. Store decision objects.**
+**Store decision moments, not raw chats, objects or data.**
 
 ---
 

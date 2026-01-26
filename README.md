@@ -1,6 +1,6 @@
 # DMG — Decision Moment Graph
 
-> **Stop storing chats. Store decision objects.**
+> **Store decision moments, not raw chats, objects or data.**
 
 DMG is an open standard for decision governance in the AI era.
 
