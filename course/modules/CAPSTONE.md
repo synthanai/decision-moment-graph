@@ -136,46 +136,7 @@ What we'll monitor:
 
 ---
 
-## Part 3: Capture DISSENT + TRACE (5 min)
-
-### DISSENT
-
-```markdown
-**Author**: [Name]
-**Claim**: [What they (or you) disagree with]
-**Evidence**: 
-1. [Supporting point]
-2. [Supporting point]
-**Conditions to change mind**: [What would prove this wrong?]
-```
-
-### TRACE
-
-```markdown
-**Claim**: [A key claim in your MEMO]
-**Source**: [URL or reference]
-**Retrieved**: [Date]
-**Strength**: [strong/medium/weak]
-**Quote**: [Relevant passage]
-```
-
----
-
-## Part 4: Add Predictions (5 min)
-
-```markdown
-## Expected Outcomes
-
-| Metric | Expected | Confidence | Horizon | Notes |
-|--------|----------|------------|---------|-------|
-| | | | | |
-| | | | | |
-| | | | | |
-```
-
----
-
-## Part 5: Finalize COMMIT + OUTCOME (5 min)
+## Part 5: Finalize with COMMIT + OUTCOME (5 min)
 
 ```markdown
 ## COMMIT

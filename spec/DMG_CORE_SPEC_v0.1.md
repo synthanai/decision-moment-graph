@@ -33,32 +33,18 @@ This specification covers:
 | **COMMIT** | State transition boundary |
 | **OUTCOME** | Post-decision reality check |
 
-### 1.4 The MERIT Principles
+### 1.5 The DMG Lifecycle
 
-DMG decisions are validated against five core principles, collectively known as **MERIT**. Each principle maps directly to a DMG primitive:
+The decision lifecycle consists of 6 phases, each mapped to a DMG kit/object:
 
-> *"DMG decisions have MERIT — Measured with OUTCOME, Evidenced via MEMO, Reversible thru DOORS, Inspectable in MOMENT, Traceable by TRACE."*
+**FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME**
 
-> [!IMPORTANT]
-> **Integrity vs. Quality**: MERIT validates the *integrity of the record*, not the *wisdom of the choice*. A disastrous decision can be MERIT-Valid if it is fully documented, measured, and reversable.
-
-#### MERIT × DMG Primitive Mapping
-
-| Principle | Primitive | Definition | Validator Check |
-|-----------|-----------|------------|-----------------|
-| **M**easured | OUTCOME | Outcomes are quantified (Predicted or Actual) | `outcome.checks` OR `memo.expected_outcomes` exists |
-| **E**videnced | MEMO | Decision is documented with options and rationale | `memo.options[]` ≥ 3 with reasoning |
-| **R**eversible | DOORS | Rollback plan and ownership are defined | `doors.own.name` AND `doors.ready` populated |
-| **I**nspectable | MOMENT | Audit trail exists and is cryptographically valid | `moment.events[]` exists with valid hash chain |
-| **T**raceable | TRACE | Evidence sources are linked with provenance | `traces[]` exists with `source.uri` or `source.type` |
-
-#### MERIT Compliance Levels
-
-| Level | Requirements |
-|-------|-------------|
-| **MERIT-Partial** | At least 3 of 5 principles satisfied |
-| **MERIT-Valid** | All 5 principles satisfied |
-| **MERIT-Certified** | MERIT-Valid + external audit verification |
+1. **FRAME**: Structure the question, context, and ≥3 options.
+2. **TRACE**: Retrieve prior decisions and attach evidence.
+3. **SPAR**: Run structured dialectic to capture DISSENT and synthesis.
+4. **RAMP**: Apply governance gates (RAMP levels) and reversibility (DOORS).
+5. **COMMIT**: Finalize state transition (Draft → Final).
+6. **OUTCOME**: Verify actual results against predictions.
 
 #### Quick Validator Logic
 
