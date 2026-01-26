@@ -1,8 +1,7 @@
 # DMG — Decision Moment Graph
 
 > **Store decision moments, not raw chats, objects or data.**
-
-DMG is an open standard for decision governance in the AI era.
+> *Decision graphs for the AI era — so LLMs synthesize auditable, reversible decisions, not just summarize documents.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Conformance Tests](https://img.shields.io/badge/conformance-passing-green.svg)](#conformance)
@@ -11,15 +10,13 @@ DMG is an open standard for decision governance in the AI era.
 
 ## What is DMG?
 
-**Decision Moment Graph** makes decisions:
-- **Structured** — not narratives
-- **Auditable** — provenance chain
-- **Reversible** — governance gates
-- **Learnable** — outcome loops
+**DMG** is the **Open Standard** for decision governance in the AI era.
+It makes decisions:
 
-### The One-Liner
-
-> "Decision graphs for the AI era — so LLMs synthesize auditable, reversible decisions, not just summarize documents."
+- 🧱 **Structured** — not narratives
+- 🔍 **Auditable** — provenance chain
+- 🔙 **Reversible** — governance gates
+- 🧠 **Learnable** — outcome loops
 
 ---
 
@@ -144,7 +141,7 @@ For consequential decisions (RAMP ≥ 3) marked Final/Approved:
 
 ---
 
-## 🆓 OSS vs 💎 Platform
+## The Open Protocol
 
 **DMG is the open standard. ARANGAM provides premium infrastructure.**
 
@@ -153,52 +150,22 @@ For consequential decisions (RAMP ≥ 3) marked Final/Approved:
 | DMG Core Spec + Schemas | ✅ | ✅ |
 | Validator CLI | ✅ | ✅ |
 | Reference Libraries | ✅ | ✅ |
-| Course + Workshop Materials | ✅ | ✅ |
 | **Hosted MOMENT Ledger** | ❌ | ✅ Hash-chained audit trail |
 | **Team Collaboration** | ❌ | ✅ Approvals + workflows |
-| **DMG Certification** | ❌ | ✅ Official credential |
 | **Enterprise Governance** | ❌ | ✅ SSO + retention policies |
-| **Priority Support** | ❌ | ✅ |
 
-> **The standard is free. The infrastructure is premium.**
+> *The standard is free. The infrastructure is premium.*
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for attribution guidelines.
 
 ---
 
-## Learn DMG
+## The SYNTHAI Ecosystem
 
-| Resource | Description |
-|----------|-------------|
-| [7-Day Email Course](course/assets/email-course.md) | Daily lessons |
-| [Online Course](course/modules/) | 10 modules + capstone |
-| [Workshop Kit](course/slides/) | Run your own sessions |
-| [Video Syllabus](course/assets/video-syllabus.md) | 30-day YouTube/TikTok plan |
+| Component | Role |
+| :--- | :--- |
+| **[Decision Moment Graph](https://github.com/synthanai/decision-moment-graph)** | The **Standard** for reversible, auditable decisions. |
+| **[VAULT-KIT](https://github.com/synthanai/vault-kit)** | The **Protocol** for privacy-first coordination. |
+| **[agentic-kit](https://github.com/synthanai/agentic-kit)** | The **Infrastructure** for reliable agent systems. |
 
----
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### DMG Improvement Proposals (DIPs)
-
-All spec changes go through the DIP process. See [community/dips/](community/dips/).
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE).
-
-**Trademarks**: "DMG", "Decision Moment Graph", and related logos are trademarks of SYNTHAI TECH PTY LTD.
-
----
-
-## The Movement
-
-> DMG makes decisions computable and learnable.
-> SPAR makes them dialectically robust.
-> OUTCOME loops make them a compounding cognition engine.
-
-**Isolated reasoning is the enemy.**
+> *Built by [SYNTHAI](https://synthai.tech) — Decision Intelligence for the AI Era.*
