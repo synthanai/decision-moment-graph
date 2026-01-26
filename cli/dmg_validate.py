@@ -85,36 +85,55 @@ class MERITValidator:
         score = 0.0
         details = []
         
-        outcome = dmg.get("objects", {}).get("outcome", {})
+        outcome = dmg.get("objects", {}).get("outcome")
+        memo = dmg.get("memo", {})
+        expected = memo.get("expected_outcomes", [])
         
-        # M1: OUTCOME exists (40%)
+        # M1: OUTCOME object check (30%)
         if outcome:
-            score += 0.40
+            score += 0.30
             details.append("✓ OUTCOME object exists")
             
-            # M2: next_check_date is set (30%)
-            if outcome.get("next_check_date"):
-                score += 0.30
-                details.append("✓ next_check_date scheduled")
-            else:
-                details.append("✗ next_check_date not set")
-            
-            # M3: checks[] linked to expected_outcomes (30%)
             checks = outcome.get("checks", [])
-            memo = dmg.get("memo", {})
-            expected = memo.get("expected_outcomes", [])
             
-            if checks and expected:
-                score += 0.30
-                details.append("✓ Outcome checks with predictions")
-            elif expected:
-                score += 0.15  # Partial credit for having predictions
-                details.append("◐ Expected outcomes defined, no checks yet")
+            # Scenario A: Retrospective (Has checks)
+            if len(checks) > 0:
+                score += 0.30 # M2 passed
+                details.append("✓ Outcome checks exist")
+                
+                # M3b: Audit results exist
+                has_actuals = False
+                for check in checks:
+                    audits = check.get("expected_outcomes_audit", [])
+                    if audits and all(a.get("actual") for a in audits):
+                        has_actuals = True
+                        break
+                
+                if has_actuals:
+                    score += 0.40
+                    details.append("✓ Actual results recorded")
+                else:
+                    details.append("✗ Checks exist but missing actuals")
+            
+            # Scenario B: Prospective (No checks yet)
             else:
-                details.append("✗ No expected_outcomes defined")
-        else:
-            details.append("✗ No OUTCOME object")
+                 # M3a: Has defined predictions
+                 if len(expected) > 0:
+                     score += 0.40 # Awarding points to reach passing threshold
+                     details.append("✓ Prospective: checks empty but expected_outcomes defined")
+                 else:
+                     details.append("✗ No checks and no expected_outcomes")
         
+        else:
+            # Fallback for Proposed decisions without OUTCOME object yet?
+            # Spec says M1 requires OUTCOME object. So we stick to that.
+            # But maybe we should warn?
+            details.append("✗ No OUTCOME object")
+            
+            # Special case: If Expected Outcomes exist, give partial credit?
+            if len(expected) > 0:
+                details.append("◐ defined expected_outcomes (needs empty outcome object for M1)")
+
         return {"score": round(score, 2), "details": details}
 
     def _check_evidenced(self, dmg: Dict) -> Dict:

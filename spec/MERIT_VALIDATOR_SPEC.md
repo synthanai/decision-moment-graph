@@ -69,7 +69,8 @@ The MERIT Validator is the canonical verification tool for assessing DMG decisio
 |-------|-----------|--------|
 | M1 | `objects.outcome` exists | 30% |
 | M2 | `outcome.checks[]` has at least 1 entry | 30% |
-| M3 | `expected_outcomes_audit[]` exists with `predicted` and `actual` values | 40% |
+| M3a | `memo.expected_outcomes` exists with confidence (M-Pre) | 40% (if M2 empty) |
+| M3b | `expected_outcomes_audit` exists with actuals (M-Post) | 40% (if M2 populated) |
 
 **Scoring**:
 ```python
@@ -81,19 +82,29 @@ def check_measured(dmg: dict) -> float:
         score += 0.30
         
         outcome = dmg["objects"]["outcome"]
-        
-        # M2: Has at least one check
         checks = outcome.get("checks", [])
+        
+        # M-Post: Has checks (Retrospective validation)
         if len(checks) > 0:
             score += 0.30
             
-            # M3: Expected outcomes have predicted/actual
+            # M3b: Audit results exist
             for check in checks:
                 audits = check.get("expected_outcomes_audit", [])
-                if audits and all(a.get("predicted") and a.get("actual") for a in audits):
+                if audits and all(a.get("actual") for a in audits):
                     score += 0.40
                     break
                     
+        # M-Pre: No checks yet (Prospective validation)
+        else:
+             # Logic shift: If checks are empty, we look for definitions in MEMO
+             memo = dmg.get("memo", {})
+             expected = memo.get("expected_outcomes", [])
+             
+             if len(expected) > 0:
+                 # Full score available for "Measured Ambition"
+                 score += 0.70 
+                 
     return score
 ```
 

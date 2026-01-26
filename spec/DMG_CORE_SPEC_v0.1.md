@@ -39,11 +39,14 @@ DMG decisions are validated against five core principles, collectively known as 
 
 > *"DMG decisions have MERIT — Measured with OUTCOME, Evidenced via MEMO, Reversible thru DOORS, Inspectable in MOMENT, Traceable by TRACE."*
 
+> [!IMPORTANT]
+> **Integrity vs. Quality**: MERIT validates the *integrity of the record*, not the *wisdom of the choice*. A disastrous decision can be MERIT-Valid if it is fully documented, measured, and reversable.
+
 #### MERIT × DMG Primitive Mapping
 
 | Principle | Primitive | Definition | Validator Check |
 |-----------|-----------|------------|-----------------|
-| **M**easured | OUTCOME | Outcomes are quantified and linked to predictions | `outcome.checks[]` exists with `expected_outcomes_audit` |
+| **M**easured | OUTCOME | Outcomes are quantified (Predicted or Actual) | `outcome.checks` OR `memo.expected_outcomes` exists |
 | **E**videnced | MEMO | Decision is documented with options and rationale | `memo.options[]` ≥ 3 with reasoning |
 | **R**eversible | DOORS | Rollback plan and ownership are defined | `doors.own.name` AND `doors.ready` populated |
 | **I**nspectable | MOMENT | Audit trail exists and is cryptographically valid | `moment.events[]` exists with valid hash chain |
