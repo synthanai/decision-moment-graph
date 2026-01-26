@@ -11,42 +11,26 @@
 ## What is DMG?
 
 **DMG** is the **Open Standard** for decision governance in the AI era.
-It enforces the **MERIT** Standard:
 
-- 📐 **Measured** — expected outcomes defined
-- 🔍 **Evidenced** — traces & citations
-- 🔙 **Reversible** — rollback plans (DOORS)
-- 👁️ **Inspectable** — open audit logs
-- 🔗 **Traceable** — provenance chain
+It enforces the **MERIT** Standard. Every valid decision must be:
 
----
-
-## Core Objects
-
-| Object | Purpose |
-|--------|---------|
-| **MEMO** | The shareable decision brief |
-| **MOMENT** | Append-only provenance log |
-| **RAMP** | Risk-proportional governance (L1-L5) |
-| **DOORS** | Reversibility checklist |
-| **DISSENT** | Structured disagreement + conditions |
-| **TRACE** | Evidence links + citations |
-| **COMMIT** | State transitions (Draft→Final) |
-| **OUTCOME** | What actually happened |
-
----
-
-## MERIT Conformance Matrix
-
-How DMG objects map to the **MERIT** standard:
-
-| Principle | Verified By | Conformance Level |
-|-----------|-------------|-------------------|
+| Principle | Verified By | Grade |
+|-----------|-------------|-------|
 | 📐 **M**easured | `OUTCOME` checks vs predictions | Platinum |
 | 🔍 **E**videnced | `MEMO` options (≥3) & rationale | Bronze |
 | 🔙 **R**eversible | `DOORS` owner & rollback plan | Gold |
 | 👁️ **I**nspectable | `MOMENT` event hash chain | Silver |
 | 🔗 **T**raceable | `TRACE` source citations | Platinum |
+
+> **"If it doesn't have MERIT, it's just a chat log."**
+
+---
+
+## The DMG Lifecycle
+
+DMG implements MERIT through a rigorous 6-phase lifecycle:
+
+> **FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME**
 
 ---
 
@@ -141,6 +125,16 @@ dmg-open-standard/
 │   └── cohorts/            # Facilitator playbooks
 └── docs/                    # Documentation site
 ```
+
+## Agentic Integration (MCP)
+
+DMG provides a **Context Engine** MCP Server for AI Agents:
+- **Tools**:
+  - `validate_moment(path)`: Run MERIT validation on any file
+  - `create_moment_scaffold(title)`: Generate compliant JSON
+- **Resources**: `dmg://graph/active`, `dmg://moment/{id}`
+- **Setup**: Run `pip install mcp` and point your client to `dmg/mcp/server.py`.
+
 
 ---
 
