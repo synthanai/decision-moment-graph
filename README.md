@@ -67,7 +67,8 @@ Output:
 ### 3. Use as Library
 
 ```python
-from sdk.python import AgenticSPARAdapter, LoggingDispatcher
+from sdk.python import AgenticSPARAdapter
+from agentic_kit.dispatchers import LoggingDispatcher
 
 adapter = AgenticSPARAdapter()
 dispatcher = LoggingDispatcher()
@@ -99,13 +100,13 @@ result = adapter.run_loop(
 
 | Module | Purpose |
 |--------|---------|
-| `agentic_adapter.py` | Core RESOLVE adapter |
-| `action_dispatcher.py` | Log, HTTP, DryRun dispatchers |
-| `semantic_memory.py` | Embedding-based memory |
-| `reflection.py` | Post-VERIFY self-critique |
-| `circuit_breaker.py` | Kill switch + rate limiter |
-| `audit_export.py` | Compliance reports |
+| `agentic_adapter.py` | Core RESOLVE adapter (uses `agentic-kit`) |
+| `spar_adapter.py` | Converts SPAR output to DMG |
 | `sparkit_runner.py` | Embedded SPAR runner |
+| `swarm_coordinator.py` | Parallel agent swarm orchestration |
+| `audit_export.py` | Compliance reports |
+
+> **Note:** Core primitives (`Memory`, `Dispatchers`, `Hub`, `Reflection`) are now imported from [`agentic-kit`](https://github.com/synthanai/agentic-kit).
 
 ## Repository Structure
 
