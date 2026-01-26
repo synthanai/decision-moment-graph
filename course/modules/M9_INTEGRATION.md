@@ -24,42 +24,37 @@ Now let's see how they work **together**.
 
 ---
 
-## The DMG Workflow
+## The DMG Lifecycle
 
-## The DMG Workflow
+> **FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME**
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        DECISION LIFECYCLE                        │
+│                        DMG LIFECYCLE                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  1. DRAFT                    2. DELIBERATE                       │
+│  1. FRAME                    2. TRACE                            │
 │  ┌─────────────┐            ┌─────────────┐                     │
-│  │   Create    │            │   Capture   │                     │
-│  │   MEMO      │───────────▶│   DISSENT   │                     │
-│  │   (options) │            │   + TRACE   │                     │
+│  │  Structure  │            │   Retrieve  │                     │
+│  │  question   │───────────▶│   prior     │                     │
+│  │  & options  │            │   evidence  │                     │
 │  └─────────────┘            └─────────────┘                     │
-│        │                           │                             │
 │        │                           │                             │
 │        ▼                           ▼                             │
-│  3. GATE                     4. COMMIT                          │
+│  3. SPAR                     4. RAMP                            │
 │  ┌─────────────┐            ┌─────────────┐                     │
-│  │  Set RAMP   │            │   State:    │                     │
-│  │  + DOORS    │───────────▶│   Final     │                     │
-│  │  (signals)  │            │ (governance │                     │
-│  └─────────────┘            │   gates)    │                     │
-│                             └─────────────┘                     │
-│                                    │                             │
-│                                    │                             │
-│                                    ▼                             │
-│  5. EXECUTE                  6. VERIFY                          │
-│  ┌─────────────┐            ┌─────────────┐                     │
-│  │   Action    │            │  OUTCOME    │                     │
-│  │     +       │───────────▶│   check     │                     │
-│  │   MOMENT    │            │ (audits +   │                     │
-│  │   events    │            │  verdict)   │                     │
+│  │    Run      │            │  Governance │                     │
+│  │  dialectic  │───────────▶│   RAMP +    │                     │
+│  │  + DISSENT  │            │   DOORS     │                     │
 │  └─────────────┘            └─────────────┘                     │
 │                                    │                             │
+│                                    ▼                             │
+│  5. COMMIT                   6. OUTCOME                         │
+│  ┌─────────────┐            ┌─────────────┐                     │
+│  │   State:    │            │   Verify    │                     │
+│  │   Final     │───────────▶│   vs        │                     │
+│  │  + MOMENT   │            │  predicted  │                     │
+│  └─────────────┘            └─────────────┘                     │
 │                                    │                             │
 │                                    ▼                             │
 │                            ┌─────────────┐                      │

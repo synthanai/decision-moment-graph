@@ -59,20 +59,20 @@ pip install -r requirements.txt
 # For embeddings: pip install sentence-transformers
 ```
 
-### 2. Run RESOLVE Loop
+### 2. Run DMG Lifecycle
 
 ```bash
-python cli/resolve.py "Should we migrate to microservices?" --dry-run
+python dmg/cli/lifecycle.py "Should we migrate to microservices?" --dry-run
 ```
 
 Output:
 ```
-📍 Phase 1: DRAFT — Define scope
-📍 Phase 2: ENRICH — Check memory for prior decisions
-📍 Phase 3: DELIBERATE — Run SPAR process
-📍 Phase 4: GATE — Governance check (RAMP/DOORS)
-📍 Phase 5: COMMIT — Finalize & Execute
-📍 Phase 6: VERIFY — Observe result
+📍 Phase 1: FRAME — Structure question & options
+📍 Phase 2: TRACE — Retrieve prior decisions & evidence
+📍 Phase 3: SPAR — Run structured deliberation
+📍 Phase 4: RAMP — Governance gate (RAMP/DOORS)
+📍 Phase 5: COMMIT — Finalize & execute
+📍 Phase 6: OUTCOME — Verify predictions vs reality
 ```
 
 ### 3. Use as Library
@@ -95,18 +95,18 @@ result = adapter.run_loop(
 
 ## The DMG Lifecycle
 
-The decision lifecycle is rigorous and linear, mapping directly to DMG primitives:
+The decision lifecycle maps directly to DMG kits and objects:
 
-> **Draft** → **Enrich** → **Deliberate** → **Gate** → **Commit** → **Verify**
+> **FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME**
 
-| Phase | Action | Object Created/Updated |
-|-------|--------|------------------------|
-| **1. DRAFT** | Define context & options | `MEMO` (Draft) |
-| **2. ENRICH** | Retrieve history & evidence | `MEMO` (Context) + `TRACE` |
-| **3. DELIBERATE** | Argue options & record dissent | `MEMO` (Analysis) + `DISSENT` |
-| **4. GATE** | Apply RAMP & DOORS checks | `RAMP` + `DOORS` |
-| **5. COMMIT** | Finalize & Execute | `COMMIT` (Final) + `MOMENT` |
-| **6. VERIFY** | Measure actual results | `OUTCOME` |
+| Phase | Kit/Object | Action | Produces |
+|-------|------------|--------|----------|
+| **1. FRAME** | FRAME-KIT | Frame the question & options | `MEMO` (Draft) |
+| **2. TRACE** | TRACE-KIT | Trace prior decisions & evidence | `MEMO` (Context) + `TRACE` |
+| **3. SPAR** | SPAR-KIT | Run structured deliberation | `DISSENT` + Synthesis |
+| **4. RAMP** | RAMP-KIT | Assess governance & reversibility | `RAMP` + `DOORS` |
+| **5. COMMIT** | COMMIT | Finalize state transition | `COMMIT` (Final) + `MOMENT` |
+| **6. OUTCOME** | OUTCOME | Verify predictions vs reality | `OUTCOME` checks |
 
 ### SDK Modules
 

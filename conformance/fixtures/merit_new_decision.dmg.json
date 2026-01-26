@@ -1,0 +1,69 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "m-fixture-new",
+        "title": "Prospective MERIT Test",
+        "decision": "We will implement the new MERIT logic to support proposed decisions.",
+        "options": [
+            {
+                "id": "opt-1",
+                "title": "Do nothing",
+                "rationale": "Status quo is broken."
+            },
+            {
+                "id": "opt-2",
+                "title": "Fix Validator",
+                "rationale": "Aligns with spec."
+            },
+            {
+                "id": "opt-3",
+                "title": "Rewrite Spec",
+                "rationale": "Too costly."
+            }
+        ],
+        "recommendation": "opt-2",
+        "ramp": {
+            "level": 1
+        },
+        "expected_outcomes": [
+            {
+                "metric": "Validation Pass Body",
+                "predicted": "100%",
+                "confidence": 0.9
+            }
+        ]
+    },
+    "moment": {
+        "events": [
+            {
+                "event_id": "evt-1",
+                "seq": 1,
+                "ts": "2026-01-26T12:00:00Z",
+                "type": "MEMO_CREATED",
+                "actor": "user",
+                "payload": {},
+                "hash": "genesis_hash_placeholder"
+            }
+        ]
+    },
+    "objects": {
+        "outcome": {
+            "next_check_date": "2026-02-01"
+        },
+        "doors": {
+            "own": {
+                "name": "Naveen"
+            },
+            "ready": "Revert commit"
+        },
+        "traces": [
+            {
+                "trace_id": "tr-1",
+                "source": {
+                    "uri": "https://github.com/synthanai/issues/1"
+                },
+                "strength": "strong"
+            }
+        ]
+    }
+}

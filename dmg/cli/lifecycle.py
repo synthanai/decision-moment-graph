@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-DMG RESOLVE CLI
+DMG Lifecycle CLI
 
-Command-line interface for running the RESOLVE loop:
-Recon → Enrich → SPAR → Okay → Launch → Verify → Encode
+Command-line interface for running the DMG Lifecycle:
+FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME
 
 Usage:
-    dmg resolve "Should we migrate to microservices?" --context "5-year monolith"
-    dmg resolve "Question" --auto-execute --dispatcher logging
-    dmg resolve "Question" --dry-run
-    dmg resolve --from-spar output.spar.json
+    dmg lifecycle "Should we migrate to microservices?" --context "5-year monolith"
+    dmg lifecycle "Question" --auto-execute --dispatcher logging
+    dmg lifecycle "Question" --dry-run
+    dmg lifecycle --from-spar output.spar.json
 """
 
 import argparse
@@ -24,8 +24,8 @@ if str(SDK_PATH) not in sys.path:
     sys.path.insert(0, str(SDK_PATH))
 
 
-def resolve_command(args):
-    """Execute the RESOLVE loop."""
+def lifecycle_command(args):
+    """Execute the DMG Lifecycle: FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME."""
     
     # Import adapters
     try:
@@ -53,21 +53,22 @@ def resolve_command(args):
     
     print()
     print("=" * 60)
-    print("🔄 RESOLVE LOOP")
+    print("🔄 DMG LIFECYCLE")
+    print("   FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME")
     print("=" * 60)
     print()
     
-    # Phase 1: RECON
-    print("📍 Phase 1: RECON")
+    # Phase 1: FRAME
+    print("📍 Phase 1: FRAME — Structure question & options")
     print(f"   Question: {spar_output.get('question', 'N/A')}")
     print(f"   Context: {spar_output.get('context', 'N/A')[:80]}...")
     print()
     
-    # Phase 2: ENRICH (happens in run_loop)
-    print("📍 Phase 2: ENRICH")
+    # Phase 2: TRACE
+    print("📍 Phase 2: TRACE — Retrieve prior decisions & evidence")
     
     # Phase 3: SPAR
-    print("📍 Phase 3: SPAR")
+    print("📍 Phase 3: SPAR — Run structured deliberation")
     synthesis = spar_output.get('synthesis', {})
     print(f"   Recommendation: {synthesis.get('recommendation', 'N/A')}")
     print(f"   Confidence: {synthesis.get('confidence', 0):.0%}")
@@ -92,8 +93,8 @@ def resolve_command(args):
         auto_execute=args.auto_execute
     )
     
-    # Phase 4: OKAY
-    print("📍 Phase 4: OKAY (Governance Gate)")
+    # Phase 4: RAMP
+    print("📍 Phase 4: RAMP — Governance gate (RAMP/DOORS)")
     gate = result.gate_decision
     if gate.result.value == "approved":
         print(f"   ✅ APPROVED: {gate.reason}")
@@ -108,8 +109,8 @@ def resolve_command(args):
             print(f"      • {action}")
     print()
     
-    # Phase 5: LAUNCH
-    print("📍 Phase 5: LAUNCH")
+    # Phase 5: COMMIT
+    print("📍 Phase 5: COMMIT — Finalize & execute")
     if result.executed:
         print(f"   ✅ Executed: {result.observation.summary}")
         print(f"   Duration: {result.observation.duration_ms}ms")
@@ -117,8 +118,8 @@ def resolve_command(args):
         print(f"   ⏸️  Not executed (auto_execute={args.auto_execute})")
     print()
     
-    # Phase 6: VERIFY
-    print("📍 Phase 6: VERIFY")
+    # Phase 6: OUTCOME
+    print("📍 Phase 6: OUTCOME — Verify predictions vs reality")
     if result.observation:
         print(f"   Success: {result.observation.success}")
         print(f"   Metrics: {result.observation.metrics}")
@@ -126,11 +127,11 @@ def resolve_command(args):
         print("   (Awaiting execution)")
     print()
     
-    # Phase 7: ENCODE
-    print("📍 Phase 7: ENCODE")
+    # MERIT Check
+    print("📊 MERIT Score")
     dmg = result.dmg
     merit_score = dmg.get("merit_score", "N/A")
-    print(f"   MERIT Score: {merit_score}/5")
+    print(f"   Score: {merit_score}/5")
     print(f"   DMG Version: {dmg.get('dmg_version', '0.1')}")
     
     # Lessons applied
@@ -148,7 +149,7 @@ def resolve_command(args):
         print(f"💾 DMG saved to: {output_path}")
     
     print("=" * 60)
-    print("✅ RESOLVE COMPLETE")
+    print("✅ LIFECYCLE COMPLETE")
     print("=" * 60)
     
     return result
@@ -215,14 +216,14 @@ def generate_spar_output(question: str, context: str = "") -> dict:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="DMG RESOLVE - Agentic Decision Loop CLI",
+        description="DMG Lifecycle CLI - FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  dmg resolve "Should we migrate to microservices?"
-  dmg resolve "Question" --context "We have 5 engineers, $50k budget"
-  dmg resolve "Question" --auto-execute --dry-run
-  dmg resolve --from-spar session.spar.json --output decision.dmg.json
+  dmg lifecycle "Should we migrate to microservices?"
+  dmg lifecycle "Question" --context "We have 5 engineers, $50k budget"
+  dmg lifecycle "Question" --auto-execute --dry-run
+  dmg lifecycle --from-spar session.spar.json --output decision.dmg.json
         """
     )
     
@@ -230,7 +231,7 @@ Examples:
     parser.add_argument(
         "question",
         nargs="?",
-        help="The decision question to RESOLVE"
+        help="The decision question to process through the DMG Lifecycle"
     )
     
     parser.add_argument(
@@ -301,7 +302,7 @@ Examples:
         parser.error("Either 'question' or '--from-spar' is required")
     
     try:
-        resolve_command(args)
+        lifecycle_command(args)
     except KeyboardInterrupt:
         print("\n⏹️  Interrupted")
         sys.exit(1)
