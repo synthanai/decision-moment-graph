@@ -91,39 +91,8 @@ class LoopResult:
     lessons_applied: List[str] = field(default_factory=list)
 
 
-class MemoryStore(Protocol):
-    """Protocol for decision memory storage."""
-    
-    def query(self, question: str, limit: int = 5, min_merit_score: int = 3) -> List[Dict]:
-        """Query similar decisions from memory."""
-        ...
-    
-    def store(self, dmg: Dict[str, Any]) -> str:
-        """Store a DMG in memory, return ID."""
-        ...
-
-
-class SimpleMemoryStore:
-    """Simple in-memory implementation of MemoryStore for testing."""
-    
-    def __init__(self):
-        self.decisions: List[Dict] = []
-    
-    def query(self, question: str, limit: int = 5, min_merit_score: int = 3) -> List[Dict]:
-        """Return most recent decisions (simplified - no semantic search)."""
-        # Filter by merit score if available
-        filtered = [
-            d for d in self.decisions 
-            if d.get("merit_score", 0) >= min_merit_score
-        ]
-        return filtered[-limit:]
-    
-    def store(self, dmg: Dict[str, Any]) -> str:
-        """Store DMG and return generated ID."""
-        dmg_id = f"dmg-{len(self.decisions):04d}"
-        self.decisions.append({**dmg, "id": dmg_id})
-        return dmg_id
-
+# Use agentic-kit
+from agentic_kit.memory import SemanticMemoryStore, SimpleMemoryStore
 
 class AgenticSPARAdapter(SPARAdapter):
     """
@@ -140,7 +109,7 @@ class AgenticSPARAdapter(SPARAdapter):
     CONFIDENCE_ESCALATION_THRESHOLD = 0.6
     MAX_UNRESOLVED_DISSENTS_FOR_AUTO = 0
     
-    def __init__(self, memory_store: Optional[MemoryStore] = None):
+    def __init__(self, memory_store: Optional[SemanticMemoryStore] = None):
         super().__init__()
         self.memory_store = memory_store or SimpleMemoryStore()
     
@@ -197,7 +166,7 @@ class AgenticSPARAdapter(SPARAdapter):
                     dmg = self.record_outcome(dmg, observation)
                     
                     # Step 6: Store in memory for future enrichment
-                    self.memory_store.store(dmg)
+                    self.memory_store.add(dmg)
                 except Exception as e:
                     observation = Observation(
                         summary=f"Execution failed: {str(e)}",
@@ -233,9 +202,10 @@ class AgenticSPARAdapter(SPARAdapter):
         
         # Query similar decisions
         similar = self.memory_store.query(
-            question=question,
+            query=question,
             limit=5,
-            min_merit_score=3
+            min_score=0.0, # Merit filtering logic needs custom filter if strict
+            filter_fn=lambda x: x.data.get("merit_score", 0) >= 3
         )
         
         if not similar:

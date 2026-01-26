@@ -40,7 +40,7 @@ async def swarm_command(args):
         )
         from sparkit_runner import run_sparkit
         from agentic_adapter import AgenticSPARAdapter
-        from action_dispatcher import LoggingDispatcher, DryRunDispatcher
+        from agentic_kit.dispatchers import LoggingDispatcher, DryRunDispatcher
     except ImportError as e:
         print(f"❌ Import error: {e}")
         print("   Make sure you're running from the dmg-open-standard directory")
