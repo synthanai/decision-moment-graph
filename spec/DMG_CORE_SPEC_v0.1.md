@@ -371,23 +371,23 @@ This creates a tamper-evident chain.
 ## 5. Conformance
 
 ### 5.1 Conformance Levels
-
-| Level | Requirements | MERIT Mapping |
-|-------|-------------|---------------|
-| **Bronze** | Valid MEMO with required fields | S (Structured) |
-| **Silver** | Bronze + MOMENT events | S + I (Inspectable) |
-| **Gold** | Silver + RAMP/DOORS | S + I + R (Reversible) |
-| **Platinum** | Gold + DISSENT + OUTCOME + TRACE | All MERIT principles |
-
-### 5.2 MERIT-to-Conformance Matrix
-
-| MERIT Principle | Verified By | Conformance Level |
-|-----------------|-------------|-------------------|
-| **M**easured | OUTCOME.checks[].expected_outcomes_audit | Platinum |
-| **E**videnced | objects.traces[].source | Gold+ |
-| **R**eversible | objects.doors + ramp.time_to_undo | Gold+ |
-| **I**nspectable | moment.events[] + hash chain | Silver+ |
-| **T**raceable | moment.events[].prev_hash chain | Silver+ |
+ 
+ | Level | Requirements | MERIT Mapping |
+ |-------|-------------|---------------|
+ | **Bronze** | Valid MEMO (Options/Rationale) | **E** (Evidenced) |
+ | **Silver** | Bronze + MOMENT (Audit Chain) | **E** + **I** (Inspectable) |
+ | **Gold** | Silver + RAMP/DOORS | **E** + **I** + **R** (Reversible) |
+ | **Platinum** | Gold + OUTCOME + TRACE | All 5 (**M**easured + **T**raceable) |
+ 
+ ### 5.2 MERIT-to-Conformance Matrix
+ 
+ | MERIT Principle | Verified By | Conformance Level |
+ |-----------------|-------------|-------------------|
+ | **M**easured | OUTCOME.checks[] | Platinum |
+ | **E**videnced | MEMO.options (≥3) | Bronze |
+ | **R**eversible | DOORS.own + ready | Gold |
+ | **I**nspectable | MOMENT events + hash chain | Silver |
+ | **T**raceable | objects.traces[].source | Platinum |
 
 ### 5.3 Validation Requirements
 

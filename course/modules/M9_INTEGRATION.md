@@ -26,12 +26,14 @@ Now let's see how they work **together**.
 
 ## The DMG Workflow
 
+## The DMG Workflow
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        DECISION LIFECYCLE                        │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  1. FRAME                    2. DELIBERATE                       │
+│  1. DRAFT                    2. DELIBERATE                       │
 │  ┌─────────────┐            ┌─────────────┐                     │
 │  │   Create    │            │   Capture   │                     │
 │  │   MEMO      │───────────▶│   DISSENT   │                     │
@@ -40,7 +42,7 @@ Now let's see how they work **together**.
 │        │                           │                             │
 │        │                           │                             │
 │        ▼                           ▼                             │
-│  3. GOVERN                   4. COMMIT                          │
+│  3. GATE                     4. COMMIT                          │
 │  ┌─────────────┐            ┌─────────────┐                     │
 │  │  Set RAMP   │            │   State:    │                     │
 │  │  + DOORS    │───────────▶│   Final     │                     │
@@ -50,7 +52,7 @@ Now let's see how they work **together**.
 │                                    │                             │
 │                                    │                             │
 │                                    ▼                             │
-│  5. EXECUTE                  6. LEARN                           │
+│  5. EXECUTE                  6. VERIFY                          │
 │  ┌─────────────┐            ┌─────────────┐                     │
 │  │   Action    │            │  OUTCOME    │                     │
 │  │     +       │───────────▶│   check     │                     │
@@ -76,7 +78,7 @@ Let's walk through a complete DMG cycle for:
 
 > **Decision**: Should we build feature X in-house or buy a vendor solution?
 
-### Step 1: Frame (MEMO)
+### Step 1: Draft (MEMO)
 
 ```markdown
 ## MEMO: Build vs Buy — Customer Analytics Feature
@@ -121,7 +123,7 @@ with < 2 weeks migration effort, vendor is acceptable
 **Strength**: medium (vendor-provided, may be optimistic)
 ```
 
-### Step 3: Govern (RAMP + DOORS)
+### Step 3: Gate (RAMP + DOORS)
 
 ```markdown
 ## RAMP
@@ -168,7 +170,7 @@ Event 6: SOURCE_ATTACHED (Mixpanel case study)
 Event 7: COMMIT_STATE_CHANGED (Draft → Final, Jan 24)
 ```
 
-### Step 6: Learn (OUTCOME)
+### Step 6: Verify (OUTCOME)
 
 Two months later:
 

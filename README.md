@@ -11,12 +11,13 @@
 ## What is DMG?
 
 **DMG** is the **Open Standard** for decision governance in the AI era.
-It makes decisions:
+It enforces the **MERIT** Standard:
 
-- 🧱 **Structured** — not narratives
-- 🔍 **Auditable** — provenance chain
-- 🔙 **Reversible** — governance gates
-- 🧠 **Learnable** — outcome loops
+- 📐 **Measured** — expected outcomes defined
+- 🔍 **Evidenced** — traces & citations
+- 🔙 **Reversible** — rollback plans (DOORS)
+- 👁️ **Inspectable** — open audit logs
+- 🔗 **Traceable** — provenance chain
 
 ---
 
@@ -32,6 +33,20 @@ It makes decisions:
 | **TRACE** | Evidence links + citations |
 | **COMMIT** | State transitions (Draft→Final) |
 | **OUTCOME** | What actually happened |
+
+---
+
+## MERIT Conformance Matrix
+
+How DMG objects map to the **MERIT** standard:
+
+| Principle | Verified By | Conformance Level |
+|-----------|-------------|-------------------|
+| 📐 **M**easured | `OUTCOME` checks vs predictions | Platinum |
+| 🔍 **E**videnced | `MEMO` options (≥3) & rationale | Bronze |
+| 🔙 **R**eversible | `DOORS` owner & rollback plan | Gold |
+| 👁️ **I**nspectable | `MOMENT` event hash chain | Silver |
+| 🔗 **T**raceable | `TRACE` source citations | Platinum |
 
 ---
 
@@ -52,13 +67,12 @@ python cli/resolve.py "Should we migrate to microservices?" --dry-run
 
 Output:
 ```
-📍 Phase 1: RECON — Define scope
+📍 Phase 1: DRAFT — Define scope
 📍 Phase 2: ENRICH — Check memory for prior decisions
-📍 Phase 3: SPAR — Deliberate
-📍 Phase 4: OKAY — Governance gate
-📍 Phase 5: LAUNCH — Execute
-📍 Phase 6: VERIFY — Observe
-📍 Phase 7: ENCODE — Store to memory
+📍 Phase 3: DELIBERATE — Run SPAR process
+📍 Phase 4: GATE — Governance check (RAMP/DOORS)
+📍 Phase 5: COMMIT — Finalize & Execute
+📍 Phase 6: VERIFY — Observe result
 ```
 
 ### 3. Use as Library
@@ -79,26 +93,27 @@ result = adapter.run_loop(
 
 ---
 
-## RESOLVE: The Agentic Loop
+## The DMG Lifecycle
 
-> **R**econ → **E**nrich → **S**PAR → **O**kay → **L**aunch → **V**erify → **E**ncode
+The decision lifecycle is rigorous and linear, mapping directly to DMG primitives:
 
-| Phase | Purpose |
-|-------|---------|
-| **RECON** | Define decision boundaries |
-| **ENRICH** | Retrieve prior decisions from memory |
-| **SPAR** | Run structured deliberation |
-| **OKAY** | Check governance gates |
-| **LAUNCH** | Execute validated action |
-| **VERIFY** | Observe actual outcome |
-| **ENCODE** | Write back to memory |
+> **Draft** → **Enrich** → **Deliberate** → **Gate** → **Commit** → **Verify**
+
+| Phase | Action | Object Created/Updated |
+|-------|--------|------------------------|
+| **1. DRAFT** | Define context & options | `MEMO` (Draft) |
+| **2. ENRICH** | Retrieve history & evidence | `MEMO` (Context) + `TRACE` |
+| **3. DELIBERATE** | Argue options & record dissent | `MEMO` (Analysis) + `DISSENT` |
+| **4. GATE** | Apply RAMP & DOORS checks | `RAMP` + `DOORS` |
+| **5. COMMIT** | Finalize & Execute | `COMMIT` (Final) + `MOMENT` |
+| **6. VERIFY** | Measure actual results | `OUTCOME` |
 
 ### SDK Modules
 
 | Module | Purpose |
 |--------|---------|
-| `agentic_adapter.py` | Core RESOLVE adapter (uses `agentic-kit`) |
-| `spar_adapter.py` | Converts SPAR output to DMG |
+| `agentic_adapter.py` | Core DMG Lifecycle adapter |
+| `spar_adapter.py` | Converts SPAR to DMG |
 | `sparkit_runner.py` | Embedded SPAR runner |
 | `swarm_coordinator.py` | Parallel agent swarm orchestration |
 | `audit_export.py` | Compliance reports |

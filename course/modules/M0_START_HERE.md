@@ -15,11 +15,12 @@ By the end of this course, you will:
 
 > **Store decision moments, not raw chats, objects or data.**
 
-DMG is an open standard for decision governance. It makes decisions:
-- **Structured** — not narratives
-- **Auditable** — provenance chain
-- **Reversible** — governance gates
-- **Learnable** — outcome loops
+DMG is an open standard for decision governance. It enforces the **MERIT** Standard:
+- **M**easured — expected outcomes defined
+- **E**videnced — traces & citations
+- **R**eversible — rollback plans (DOORS)
+- **I**nspectable — open audit logs
+- **T**raceable — provenance chain
 
 ---
 
