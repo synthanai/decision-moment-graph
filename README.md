@@ -131,6 +131,24 @@ DMG provides a **Context Engine** MCP Server for AI Agents:
 - **Resources**: `dmg://graph/active`, `dmg://moment/{id}`
 - **Setup**: Run `pip install mcp` and point your client to `dmg/mcp/server.py`.
 
+### New Modules (Jan 2026)
+
+| Module | Path | Purpose |
+|--------|------|---------|
+| **GAUGE Emitter** | `src/gauge-emitter.js` | Ecosystem event emission at phase completion |
+| **Decision Replay** | `src/replay.js` | Counterfactual analysis and training data |
+
+```javascript
+// Decision replay example
+const { captureSnapshot, replayDecision, REPLAY_MODES } = require('dmg/src/replay');
+
+const snapshotId = captureSnapshot(decision);
+const replay = replayDecision(snapshotId, {
+    mode: REPLAY_MODES.COUNTERFACTUAL,
+    modifications: { context: { budget: newBudget } }
+});
+```
+
 
 ---
 
