@@ -1,5 +1,5 @@
 {
-    "dmg_version": "0.1",
+    "dmg_version": "0.2",
     "_description": "MERIT-Partial: Has MEMO (E), MOMENT (I), TRACE (T), but missing OUTCOME (M) and DOORS (R)",
     "_expected_level": "MERIT-Partial",
     "memo": {

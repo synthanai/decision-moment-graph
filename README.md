@@ -1,7 +1,7 @@
 # DMG — Decision Moment Graph
 
-> **Store decision moments, not raw chats, objects or data.**
-> *Decision graphs for the AI era — so LLMs synthesize auditable, reversible decisions, not just summarize documents.*
+> **The Reference Implementation of the [Decision Moment Standard (DMS)](../decision-moment-standard).**
+> *Store decision moments, not raw chats, objects or data.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Conformance Tests](https://img.shields.io/badge/conformance-passing-green.svg)](#conformance)
@@ -10,9 +10,9 @@
 
 ## What is DMG?
 
-**DMG** is the **Open Standard** for decision governance in the AI era.
+**DMG** is the **standard graph encoding** for the **[DMS Standard](../decision-moment-standard)**.
 
-It enforces the **MERIT** Standard. Every valid decision must be:
+It provides the schemas, SDKs, and validators to ensure your decisions are **MERIT-compliant**:
 
 | Principle | Verified By | Grade |
 |-----------|-------------|-------|
@@ -22,15 +22,17 @@ It enforces the **MERIT** Standard. Every valid decision must be:
 | 👁️ **I**nspectable | `MOMENT` event hash chain | Silver |
 | 🔗 **T**raceable | `TRACE` source citations | Platinum |
 
-> **"If it doesn't have MERIT, it's just a chat log."**
+> **"DMS defines the rules. DMG stores the proof."**
 
 ---
 
 ## The DMG Lifecycle
 
-DMG implements MERIT through a rigorous 6-phase lifecycle:
+## The DMG Lifecycle
 
-> **FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME**
+DMG implements the **7-Step Heptagon** lifecycle defined by DMS:
+
+> **FRAME → SPAR → GATE → COMMIT → ENACT → YIELD → GAUGE**
 
 ---
 
@@ -39,7 +41,7 @@ DMG implements MERIT through a rigorous 6-phase lifecycle:
 ### 1. Install
 
 ```bash
-pip install -r requirements.txt
+pip install decision-moment-graph
 # For embeddings: pip install sentence-transformers
 ```
 
@@ -52,17 +54,18 @@ python dmg/cli/lifecycle.py "Should we migrate to microservices?" --dry-run
 Output:
 ```
 📍 Phase 1: FRAME — Structure question & options
-📍 Phase 2: TRACE — Retrieve prior decisions & evidence
-📍 Phase 3: SPAR — Run structured deliberation
-📍 Phase 4: RAMP — Governance gate (RAMP/DOORS)
-📍 Phase 5: COMMIT — Finalize & execute
-📍 Phase 6: OUTCOME — Verify predictions vs reality
+📍 Phase 2: SPAR — Deliberate & Challenge
+📍 Phase 3: GATE — Check Governance & Reversibility
+📍 Phase 4: COMMIT — Sign & Hash (The "Capture")
+📍 Phase 5: ENACT — Execute instructions
+📍 Phase 6: YIELD — Measure results
+📍 Cycle Complete: GAUGE — Calibrate confidence & learn
 ```
 
 ### 3. Use as Library
 
 ```python
-from sdk.python import AgenticSPARAdapter
+from decision_moment_graph import AgenticSPARAdapter
 from agentic_kit.dispatchers import LoggingDispatcher
 
 adapter = AgenticSPARAdapter()
@@ -81,16 +84,17 @@ result = adapter.run_loop(
 
 The decision lifecycle maps directly to DMG kits and objects:
 
-> **FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME**
+> **FRAME → SPAR → GATE → COMMIT → ENACT → YIELD → GAUGE**
 
-| Phase | Kit/Object | Action | Produces |
-|-------|------------|--------|----------|
-| **1. FRAME** | FRAME-KIT | Frame the question & options | `MEMO` (Draft) |
-| **2. TRACE** | TRACE-KIT | Trace prior decisions & evidence | `MEMO` (Context) + `TRACE` |
-| **3. SPAR** | SPAR-KIT | Run structured deliberation | `DISSENT` + Synthesis |
-| **4. RAMP** | RAMP-KIT | Assess governance & reversibility | `RAMP` + `DOORS` |
-| **5. COMMIT** | COMMIT | Finalize state transition | `COMMIT` (Final) + `MOMENT` |
-| **6. OUTCOME** | OUTCOME | Verify predictions vs reality | `OUTCOME` checks |
+| Step | Phase | Primitive | Kit/Module | Action |
+|-------|-------|-----------|------------|--------|
+| 1 | **FRAME** | `MEMO` | `dmg/frame` | Define context & options |
+| 2 | **SPAR** | `DISSENT` | `spar-kit` | Deliberate & Challenge |
+| 3 | **GATE** | `RAMP` | `dmg/gate` | Check Governance & Reversibility |
+| 4 | **COMMIT** | `MOMENT` | `dmg/core` | Sign & Hash (The "Capture") |
+| 5 | **ENACT** | — | — | Execute instructions |
+| 6 | **YIELD** | `OUTCOME` | `dmg/yield` | Measure results |
+| 7 | **GAUGE** | `RETRO` | `dmg/gauge` | Calibrate confidence & learn |
 
 ### SDK Modules
 
@@ -107,24 +111,16 @@ The decision lifecycle maps directly to DMG kits and objects:
 ## Repository Structure
 
 ```
-dmg-open-standard/
-├── spec/                    # DMG Core Specification
-├── schema/                  # JSON Schema definitions
+decision-moment-graph/
+├── dmg/                     # Python Package
+│   ├── schema/              # JSON Schema definitions
+│   ├── sdk/                 # Reference implementations
+│   └── cli/                 # Validator CLI
 ├── conformance/             # Test fixtures + runner
-├── sdk/                     # Reference implementations
-│   ├── js/                  # dmg-js
-│   └── python/              # dmg-py
-├── cli/                     # Validator CLI
-├── examples/                # Sample DMG files
-├── course/                  # Online learning content
-│   ├── modules/            # M0-M10 + capstone
-│   ├── assets/             # Downloadable materials
-│   └── slides/             # Workshop decks
-├── community/               # Governance
-│   ├── dips/               # DMG Improvement Proposals
-│   └── cohorts/            # Facilitator playbooks
-└── docs/                    # Documentation site
+└── docs/                    # Implementation Docs
 ```
+
+> **Note**: Normative specs have moved to `decision-moment-standard/spec`.
 
 ## Agentic Integration (MCP)
 
@@ -143,7 +139,7 @@ DMG provides a **Context Engine** MCP Server for AI Agents:
 For consequential decisions (RAMP ≥ 3) marked Final/Approved:
 
 ✅ Scheduled outcome check required  
-✅ At least 1 dissent captured  
+✅ At least 1 dissent captured (or ZK-Dissent ref)  
 ✅ Rollback owner named  
 ✅ ≥2 reversal signals defined  
 ✅ At least 1 prediction with confidence  
@@ -152,18 +148,18 @@ For consequential decisions (RAMP ≥ 3) marked Final/Approved:
 
 ## The Open Protocol
 
-**DMG is the open standard. ARANGAM provides premium infrastructure.**
+**DMG is the open standard toolkit. ARANGAM provides premium infrastructure.**
 
-| What You Get | DMG Standard (OSS) | ARANGAM Platform |
+| What You Get | DMG (OSS Kit) | ARANGAM Platform |
 |--------------|--------------------|------------------|
-| DMG Core Spec + Schemas | ✅ | ✅ |
+| DMG Core Schemas | ✅ | ✅ |
 | Validator CLI | ✅ | ✅ |
 | Reference Libraries | ✅ | ✅ |
 | **Hosted MOMENT Ledger** | ❌ | ✅ Hash-chained audit trail |
 | **Team Collaboration** | ❌ | ✅ Approvals + workflows |
 | **Enterprise Governance** | ❌ | ✅ SSO + retention policies |
 
-> *The standard is free. The infrastructure is premium.*
+> *The kit is free. The infrastructure is premium.*
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for attribution guidelines.
 

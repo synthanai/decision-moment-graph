@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
 """
 DMG Lifecycle CLI
 
-Command-line interface for running the DMG Lifecycle:
-FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME
+Command-line interface for running the DMG Lifecycle (7-Step Heptagon):
+FRAME → SPAR → GATE → COMMIT → ENACT → YIELD → GAUGE
 
 Usage:
     dmg lifecycle "Should we migrate to microservices?" --context "5-year monolith"
@@ -19,21 +18,28 @@ from pathlib import Path
 from datetime import datetime
 
 # Add SDK to path
-SDK_PATH = Path(__file__).parent.parent / "sdk" / "python"
+SDK_PATH = Path(__file__).parent.parent / "sdk"
 if str(SDK_PATH) not in sys.path:
+    # Use the parent/sdk path as confirmed by file system check
     sys.path.insert(0, str(SDK_PATH))
 
 
 def lifecycle_command(args):
-    """Execute the DMG Lifecycle: FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME."""
+    """Execute the DMG Lifecycle: FRAME → SPAR → GATE → COMMIT → ENACT → YIELD → GAUGE."""
     
     # Import adapters
     try:
         from agentic_adapter import AgenticSPARAdapter, Observation
-        from action_dispatcher import (
-            LoggingDispatcher, DryRunDispatcher, HttpDispatcher,
-            create_dispatcher
-        )
+        # Try importing from agentic_kit if possible or fallback
+        try:
+            from agentic_kit.dispatchers import (
+                LoggingDispatcher, DryRunDispatcher, HttpDispatcher,
+                create_dispatcher
+            )
+        except ImportError:
+            # Fallback to local if still present, or clean up later
+             pass
+
     except ImportError as e:
         print(f"❌ Import error: {e}")
         print("   Make sure you're running from the dmg-open-standard directory")
@@ -53,8 +59,8 @@ def lifecycle_command(args):
     
     print()
     print("=" * 60)
-    print("🔄 DMG LIFECYCLE")
-    print("   FRAME → TRACE → SPAR → RAMP → COMMIT → OUTCOME")
+    print("🔄 DMG LIFECYCLE (Heptagon)")
+    print("   FRAME → SPAR → GATE → COMMIT → ENACT → YIELD → GAUGE")
     print("=" * 60)
     print()
     
@@ -64,11 +70,8 @@ def lifecycle_command(args):
     print(f"   Context: {spar_output.get('context', 'N/A')[:80]}...")
     print()
     
-    # Phase 2: TRACE
-    print("📍 Phase 2: TRACE — Retrieve prior decisions & evidence")
-    
-    # Phase 3: SPAR
-    print("📍 Phase 3: SPAR — Run structured deliberation")
+    # Phase 2: SPAR (Deliberate)
+    print("📍 Phase 2: SPAR — Deliberate & Challenge")
     synthesis = spar_output.get('synthesis', {})
     print(f"   Recommendation: {synthesis.get('recommendation', 'N/A')}")
     print(f"   Confidence: {synthesis.get('confidence', 0):.0%}")
@@ -93,8 +96,8 @@ def lifecycle_command(args):
         auto_execute=args.auto_execute
     )
     
-    # Phase 4: RAMP
-    print("📍 Phase 4: RAMP — Governance gate (RAMP/DOORS)")
+    # Phase 3: GATE (Governance)
+    print("📍 Phase 3: GATE — Governance check (RAMP/DOORS)")
     gate = result.gate_decision
     if gate.result.value == "approved":
         print(f"   ✅ APPROVED: {gate.reason}")
@@ -109,8 +112,20 @@ def lifecycle_command(args):
             print(f"      • {action}")
     print()
     
-    # Phase 5: COMMIT
-    print("📍 Phase 5: COMMIT — Finalize & execute")
+    # Phase 4: COMMIT (Capture)
+    print("📍 Phase 4: COMMIT — Sign & Hash (The Capture)")
+    moment = result.dmg.get("moment", {})
+    events = moment.get("events", [])
+    if events:
+        latest = events[-1]
+        print(f"   Hash: {latest.get('hash', 'N/A')[:12]}...")
+        print(f"   Events: {len(events)}")
+    else:
+        print("   (No events recorded)")
+    print()
+
+    # Phase 5: ENACT (Execute)
+    print("📍 Phase 5: ENACT — Execute instructions")
     if result.executed:
         print(f"   ✅ Executed: {result.observation.summary}")
         print(f"   Duration: {result.observation.duration_ms}ms")
@@ -118,8 +133,8 @@ def lifecycle_command(args):
         print(f"   ⏸️  Not executed (auto_execute={args.auto_execute})")
     print()
     
-    # Phase 6: OUTCOME
-    print("📍 Phase 6: OUTCOME — Verify predictions vs reality")
+    # Phase 6: YIELD (Outcome)
+    print("📍 Phase 6: YIELD — Measure results")
     if result.observation:
         print(f"   Success: {result.observation.success}")
         print(f"   Metrics: {result.observation.metrics}")
@@ -127,12 +142,15 @@ def lifecycle_command(args):
         print("   (Awaiting execution)")
     print()
     
+    # Phase 7: GAUGE (Calibrate)
+    print("📍 Phase 7: GAUGE — Calibrate confidence & learn")
+    
     # MERIT Check
     print("📊 MERIT Score")
     dmg = result.dmg
     merit_score = dmg.get("merit_score", "N/A")
     print(f"   Score: {merit_score}/5")
-    print(f"   DMG Version: {dmg.get('dmg_version', '0.1')}")
+    print(f"   DMG Version: {dmg.get('dmg_version', '0.2')}")
     
     # Lessons applied
     if result.lessons_applied:

@@ -1,5 +1,5 @@
 {
-    "dmg_version": "0.1",
+    "dmg_version": "0.2",
     "_description": "MERIT-None: Only has MEMO (E), missing OUTCOME, DOORS, MOMENT events, TRACE",
     "_expected_level": "MERIT-None",
     "memo": {

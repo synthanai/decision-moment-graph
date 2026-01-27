@@ -19,7 +19,7 @@ from typing import List, Dict, Any, Tuple
 from datetime import datetime
 
 # Schema version
-DMG_VERSION = "0.1"
+DMG_VERSION = "0.2"
 
 # MERIT thresholds (per MERIT_VALIDATOR_SPEC.md)
 MERIT_THRESHOLDS = {

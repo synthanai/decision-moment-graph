@@ -6,7 +6,7 @@ Implements the SWARM-LIFECYCLE protocol:
 DECOMPOSE → SPAWN → MONITOR → COLLECT → UNBLOCK → SYNTHESIZE → GOVERN
 
 Each SubAgent runs its own DMG Lifecycle:
-Draft → Enrich → Deliberate → Gate → Commit → Verify
+Frame -> Spar -> Gate -> Commit -> Enact -> Yield-Gauge
 """
 
 # ... imports ...

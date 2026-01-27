@@ -30,7 +30,7 @@ try:
 except ImportError:
     # Fallback for standalone testing
     class SPARAdapter:
-        DMG_VERSION = "0.1"
+        DMG_VERSION = "0.2"
         def convert(self, spar_output):
             return {"dmg_version": self.DMG_VERSION, "memo": {}, "moment": {}, "objects": {}}
 

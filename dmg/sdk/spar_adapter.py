@@ -19,7 +19,7 @@ import hashlib
 class SPARAdapter:
     """Converts SPAR debate outputs to DMG format."""
     
-    DMG_VERSION = "0.1"
+    DMG_VERSION = "0.2"
     
     def __init__(self):
         pass
