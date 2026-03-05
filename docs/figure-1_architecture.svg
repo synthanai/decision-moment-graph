@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+    </marker>
+    <marker id="arrow-gauge" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00897B"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="380" fill="white"/>
+
+  <!-- Title -->
+  <text x="480" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">DMG: Decision Moment Graph (7-Step Heptagon)</text>
+  <text x="480" y="46" text-anchor="middle" font-size="11" fill="#777">Store decision moments, not raw data. Every decision MERIT-compliant.</text>
+
+  <!-- ============ Step 1: FRAME ============ -->
+  <rect x="20" y="90" width="110" height="70" rx="8" fill="#E3F2FD" stroke="#1976D2" stroke-width="2"/>
+  <text x="75" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">FRAME</text>
+  <text x="75" y="135" text-anchor="middle" font-size="9" fill="#555">Define context</text>
+  <text x="75" y="148" text-anchor="middle" font-size="9" fill="#555">and options</text>
+
+  <!-- Arrow -->
+  <line x1="130" y1="125" x2="153" y2="125" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Step 2: SPAR ============ -->
+  <rect x="155" y="90" width="110" height="70" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2"/>
+  <text x="210" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#6A1B9A">SPAR</text>
+  <text x="210" y="135" text-anchor="middle" font-size="9" fill="#555">Deliberate and</text>
+  <text x="210" y="148" text-anchor="middle" font-size="9" fill="#555">challenge</text>
+
+  <!-- Arrow -->
+  <line x1="265" y1="125" x2="288" y2="125" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Step 3: GATE ============ -->
+  <rect x="290" y="90" width="110" height="70" rx="8" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="345" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">GATE</text>
+  <text x="345" y="135" text-anchor="middle" font-size="9" fill="#555">Governance and</text>
+  <text x="345" y="148" text-anchor="middle" font-size="9" fill="#555">reversibility</text>
+
+  <!-- Arrow -->
+  <line x1="400" y1="125" x2="423" y2="125" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Step 4: COMMIT (highlighted) ============ -->
+  <rect x="425" y="82" width="120" height="86" rx="8" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2.5"/>
+  <text x="485" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="#283593">COMMIT</text>
+  <text x="485" y="130" text-anchor="middle" font-size="9" fill="#555">Sign and hash</text>
+  <text x="485" y="143" text-anchor="middle" font-size="9" fill="#555">(the capture)</text>
+  <rect x="450" y="150" width="70" height="14" rx="7" fill="#C5CAE9" stroke="#3F51B5" stroke-width="1"/>
+  <text x="485" y="161" text-anchor="middle" font-size="8" font-weight="bold" fill="#1A237E">MOMENT</text>
+
+  <!-- Arrow -->
+  <line x1="545" y1="125" x2="568" y2="125" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Step 5: ENACT ============ -->
+  <rect x="570" y="90" width="110" height="70" rx="8" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="625" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#2E7D32">ENACT</text>
+  <text x="625" y="135" text-anchor="middle" font-size="9" fill="#555">Execute</text>
+  <text x="625" y="148" text-anchor="middle" font-size="9" fill="#555">instructions</text>
+
+  <!-- Arrow -->
+  <line x1="680" y1="125" x2="703" y2="125" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Step 6: YIELD ============ -->
+  <rect x="705" y="90" width="110" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="2"/>
+  <text x="760" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#37474F">YIELD</text>
+  <text x="760" y="135" text-anchor="middle" font-size="9" fill="#555">Measure</text>
+  <text x="760" y="148" text-anchor="middle" font-size="9" fill="#555">results</text>
+
+  <!-- Arrow -->
+  <line x1="815" y1="125" x2="838" y2="125" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Step 7: GAUGE ============ -->
+  <rect x="840" y="90" width="100" height="70" rx="8" fill="#E0F2F1" stroke="#00897B" stroke-width="2"/>
+  <text x="890" y="118" text-anchor="middle" font-size="12" font-weight="bold" fill="#00695C">GAUGE</text>
+  <text x="890" y="135" text-anchor="middle" font-size="9" fill="#555">Calibrate</text>
+  <text x="890" y="148" text-anchor="middle" font-size="9" fill="#555">and learn</text>
+
+  <!-- GAUGE feedback loop -->
+  <path d="M 890 160 L 890 210 L 75 210 L 75 160" fill="none" stroke="#00897B" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrow-gauge)"/>
+  <text x="480" y="225" text-anchor="middle" font-size="10" fill="#00695C" font-style="italic">Continuous calibration: update confidence, reframe next decision</text>
+
+  <!-- ============ MERIT Properties ============ -->
+  <text x="480" y="260" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">Every MOMENT is MERIT-Compliant</text>
+
+  <rect x="120" y="272" width="130" height="28" rx="14" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
+  <text x="185" y="291" text-anchor="middle" font-size="10" font-weight="bold" fill="#1565C0">📐 Measured</text>
+
+  <rect x="265" y="272" width="130" height="28" rx="14" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="330" y="291" text-anchor="middle" font-size="10" font-weight="bold" fill="#2E7D32">🔍 Evidenced</text>
+
+  <rect x="410" y="272" width="130" height="28" rx="14" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="475" y="291" text-anchor="middle" font-size="10" font-weight="bold" fill="#E65100">🔙 Reversible</text>
+
+  <rect x="555" y="272" width="130" height="28" rx="14" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="620" y="291" text-anchor="middle" font-size="10" font-weight="bold" fill="#6A1B9A">👁️ Inspectable</text>
+
+  <rect x="700" y="272" width="130" height="28" rx="14" fill="#E0F2F1" stroke="#00897B" stroke-width="1"/>
+  <text x="765" y="291" text-anchor="middle" font-size="10" font-weight="bold" fill="#00695C">🔗 Traceable</text>
+
+  <!-- ============ Legend ============ -->
+  <rect x="250" y="330" width="12" height="12" rx="2" fill="#E8EAF6" stroke="#3F51B5" stroke-width="1.5"/>
+  <text x="268" y="341" font-size="10" fill="#555">Decision Capture (immutable)</text>
+
+  <line x1="450" y1="336" x2="490" y2="336" stroke="#00897B" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="498" y="341" font-size="10" fill="#555">Calibration loop</text>
+
+  <text x="480" y="370" text-anchor="middle" font-size="11" fill="#555">"DMS defines the rules. DMG stores the proof."</text>
+</svg>
