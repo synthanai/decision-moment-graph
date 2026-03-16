@@ -318,3 +318,19 @@ spar "Should we X?" --output-dmg decision.dmg.json
 ---
 
 *This adapter makes SPAR the deliberation engine for DMG governance.*
+
+
+---
+
+## RAPS REVIEW
+
+| Field | Value |
+|-------|-------|
+| Review Tier | Lite |
+| Review Due | TBD (needs confidence score) |
+| Review Status | Pending |
+| Verdict Status | Unknown |
+| Evidence | - |
+| Corrective Action | - |
+| Reviewed By | - |
+| Review Date | - |

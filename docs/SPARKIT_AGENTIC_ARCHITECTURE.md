@@ -323,3 +323,19 @@ class ActionDispatcher(Protocol):
 ---
 
 *End of SPARKIT-Agentic Architecture Specification v1.0*
+
+
+---
+
+## RAPS REVIEW
+
+| Field | Value |
+|-------|-------|
+| Review Tier | Lite |
+| Review Due | TBD (needs confidence score) |
+| Review Status | Pending |
+| Verdict Status | Unknown |
+| Evidence | - |
+| Corrective Action | - |
+| Reviewed By | - |
+| Review Date | - |

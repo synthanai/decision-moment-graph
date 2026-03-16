@@ -249,3 +249,19 @@ Reason → Act → Observe → Update → Coordinate → Govern
 ---
 
 *End of SPARKIT vs Agentic Reasoning Comparison v1.0*
+
+
+---
+
+## RAPS REVIEW
+
+| Field | Value |
+|-------|-------|
+| Review Tier | Lite |
+| Review Due | TBD (needs confidence score) |
+| Review Status | Pending |
+| Verdict Status | Unknown |
+| Evidence | - |
+| Corrective Action | - |
+| Reviewed By | - |
+| Review Date | - |
