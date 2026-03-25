@@ -1,0 +1,39 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "test-invalid-002",
+        "title": "Missing DOORS owner for RAMP 4",
+        "options": [
+            {
+                "name": "A",
+                "description": "Option A"
+            },
+            {
+                "name": "B",
+                "description": "Option B"
+            },
+            {
+                "name": "C",
+                "description": "Option C"
+            }
+        ],
+        "ramp": {
+            "level": 4
+        },
+        "doors": {
+            "declare": "We commit to A",
+            "observe": [
+                "Metric 1"
+            ],
+            "own": {},
+            "ready": "Rollback plan exists",
+            "signals": []
+        }
+    },
+    "objects": {
+        "commit": {
+            "state": "Final"
+        }
+    },
+    "_test_notes": "Should fail: RAMP ≥3 with Final state requires doors.own.name"
+}

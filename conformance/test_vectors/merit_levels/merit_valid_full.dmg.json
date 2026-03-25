@@ -1,0 +1,85 @@
+{
+    "dmg_version": "0.2",
+    "_description": "MERIT-Valid: All 5 principles satisfied",
+    "_expected_level": "MERIT-Valid",
+    "memo": {
+        "memo_id": "merit-valid-test",
+        "title": "Decision with full MERIT compliance",
+        "decision": "A decision that satisfies all 5 MERIT principles",
+        "options": [
+            {
+                "id": "a",
+                "title": "Option A",
+                "rationale": "First option with rationale"
+            },
+            {
+                "id": "b",
+                "title": "Option B",
+                "rationale": "Second option with rationale"
+            },
+            {
+                "id": "c",
+                "title": "Option C",
+                "rationale": "Third option with rationale"
+            }
+        ],
+        "recommendation": "a",
+        "ramp": {
+            "level": 2,
+            "justification": "Moderate",
+            "time_to_undo": "1 week"
+        },
+        "expected_outcomes": [
+            {
+                "metric": "Success",
+                "predicted": "80%",
+                "confidence": 0.7
+            }
+        ]
+    },
+    "moment": {
+        "moment_id": "m1",
+        "memo_id": "merit-valid-test",
+        "events": [
+            {
+                "event_id": "e1",
+                "seq": 1,
+                "ts": "2026-01-26T00:00:00Z",
+                "type": "MEMO_CREATED",
+                "actor": "test@example.com",
+                "payload": {},
+                "prev_hash": "",
+                "hash": "abc123"
+            }
+        ]
+    },
+    "objects": {
+        "doors": {
+            "declare": "Proceeding with Option A",
+            "observe": [
+                "Success rate"
+            ],
+            "own": {
+                "name": "Test Owner",
+                "role": "Decision Owner"
+            },
+            "ready": "Can revert by choosing Option B"
+        },
+        "traces": [
+            {
+                "trace_id": "t1",
+                "claim": "Supporting claim",
+                "source": {
+                    "type": "document",
+                    "uri": "https://example.com"
+                },
+                "strength": "strong"
+            }
+        ],
+        "outcome": {
+            "outcome_id": "o1",
+            "next_check_date": "2026-03-26",
+            "checks": []
+        }
+    }
+}

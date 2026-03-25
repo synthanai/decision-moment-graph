@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMG — Decision Moment Graph</title>
+    <meta name="description" content="Store decision moments, not raw chats, objects or data.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1 class="logo">📋 DMG</h1>
+                <span class="tagline">Decision Moment Graph</span>
+            </div>
+            <div class="header-right">
+                <button id="spar-btn" class="btn btn-spar">🥊 SPAR First</button>
+                <button id="new-memo-btn" class="btn btn-primary">+ New MEMO</button>
+                <button id="export-btn" class="btn btn-secondary">Export</button>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="main-layout">
+            <!-- Sidebar: MEMO List -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h2>My Decisions</h2>
+                    <span id="memo-count" class="memo-count">0</span>
+                </div>
+                <div id="memo-list" class="memo-list">
+                    <!-- Memo cards will be rendered here -->
+                    <div class="empty-state">
+                        <p>No decisions yet.</p>
+                        <p class="empty-hint">Click "+ New MEMO" to start.</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Editor -->
+            <section class="editor">
+                <div id="editor-content" class="editor-content">
+                    <!-- Empty state -->
+                    <div class="editor-empty">
+                        <div class="editor-empty-icon">📋</div>
+                        <h2>Store decision moments, not raw chats, objects or data.</h2>
+                        <p>Create a MEMO to capture your next decision with structure.</p>
+                        <button id="editor-new-btn" class="btn btn-primary btn-large">Create Your First MEMO</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: RAMP/DOORS/Validation -->
+            <aside class="right-panel" id="right-panel" style="display: none;">
+                <div class="panel-section">
+                    <h3>📊 RAMP Level</h3>
+                    <div class="ramp-selector" id="ramp-selector">
+                        <button class="ramp-btn" data-level="1">L1<br><small>Minutes</small></button>
+                        <button class="ramp-btn" data-level="2">L2<br><small>Hours</small></button>
+                        <button class="ramp-btn active" data-level="3">L3<br><small>Weeks</small></button>
+                        <button class="ramp-btn" data-level="4">L4<br><small>Months</small></button>
+                        <button class="ramp-btn" data-level="5">L5<br><small>Years</small></button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>🚪 DOORS Checklist</h3>
+                    <div class="doors-checklist">
+                        <label class="doors-item">
+                            <input type="checkbox" id="doors-declare">
+                            <span><strong>D</strong>eclare: Commitment stated</span>
+                        </label>
+                        <label class="doors-item">
+                            <input type="checkbox" id="doors-observe">
+                            <span><strong>O</strong>bserve: Metrics defined</span>
+                        </label>
+                        <label class="doors-item">
+                            <input type="checkbox" id="doors-own">
+                            <span><strong>O</strong>wn: Rollback owner named</span>
+                        </label>
+                        <label class="doors-item">
+                            <input type="checkbox" id="doors-ready">
+                            <span><strong>R</strong>eady: Rollback plan exists</span>
+                        </label>
+                        <label class="doors-item">
+                            <input type="checkbox" id="doors-signal">
+                            <span><strong>S</strong>ignal: Triggers defined</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>✅ Validation</h3>
+                    <div id="validation-status" class="validation-status">
+                        <div class="validation-item valid">
+                            <span class="validation-icon">✅</span>
+                            <span>≥3 options</span>
+                        </div>
+                        <div class="validation-item invalid">
+                            <span class="validation-icon">❌</span>
+                            <span>RAMP level set</span>
+                        </div>
+                        <div class="validation-item pending">
+                            <span class="validation-icon">⏳</span>
+                            <span>DISSENT captured</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>📅 Outcome Check</h3>
+                    <input type="date" id="outcome-date" class="date-input">
+                </div>
+            </aside>
+        </main>
+
+        <!-- MEMO Editor Modal -->
+        <div id="memo-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>New MEMO</h2>
+                    <button id="close-modal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="memo-title">Title</label>
+                        <input type="text" id="memo-title" placeholder="What's the decision?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memo-decision">Decision Statement</label>
+                        <textarea id="memo-decision" rows="3"
+                            placeholder="Clear statement of what you're committing to"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Options (minimum 3)</label>
+                        <div id="options-container">
+                            <div class="option-row">
+                                <input type="text" class="option-input" placeholder="Option A">
+                            </div>
+                            <div class="option-row">
+                                <input type="text" class="option-input" placeholder="Option B">
+                            </div>
+                            <div class="option-row">
+                                <input type="text" class="option-input" placeholder="Option C (or Do Nothing)">
+                            </div>
+                        </div>
+                        <button id="add-option" class="btn btn-small">+ Add Option</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memo-recommendation">Recommendation</label>
+                        <textarea id="memo-recommendation" rows="3" placeholder="Which option and why?"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="memo-owner">Decision Owner</label>
+                            <input type="text" id="memo-owner" placeholder="Who owns this?">
+                        </div>
+                        <div class="form-group half">
+                            <label for="memo-ramp">RAMP Level</label>
+                            <select id="memo-ramp">
+                                <option value="1">L1 — Minutes to undo</option>
+                                <option value="2">L2 — Hours to undo</option>
+                                <option value="3" selected>L3 — Weeks to undo</option>
+                                <option value="4">L4 — Months to undo</option>
+                                <option value="5">L5 — Years to undo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-memo" class="btn btn-primary">Save MEMO</button>
+                    <button id="cancel-memo" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPAR Modal -->
+        <div id="spar-modal" class="modal" style="display: none;">
+            <div class="modal-content spar-modal">
+                <div class="modal-header spar-header">
+                    <h2>🥊 SPAR — Deliberate First</h2>
+                    <button id="close-spar-modal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="spar-question">Decision Question</label>
+                        <input type="text" id="spar-question" placeholder="Should we build or buy X?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spar-context">Context (optional)</label>
+                        <textarea id="spar-context" rows="2"
+                            placeholder="Any constraints, assumptions, or background..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deliberation Mode</label>
+                        <div class="spar-mode-selector">
+                            <button class="spar-mode-btn active" data-mode="quick">
+                                ⚡ Quick<br><small>2 agents, 30s</small>
+                            </button>
+                            <button class="spar-mode-btn" data-mode="balanced">
+                                ⚖️ Balanced<br><small>4 agents, 1m</small>
+                            </button>
+                            <button class="spar-mode-btn" data-mode="deep">
+                                🔮 Deep<br><small>8 agents, 3m</small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="spar-status" class="spar-status" style="display: none;">
+                        <div class="spar-spinner"></div>
+                        <span id="spar-status-text">Running SPAR deliberation...</span>
+                    </div>
+
+                    <div id="spar-result" class="spar-result" style="display: none;">
+                        <h3>Synthesis</h3>
+                        <div id="spar-recommendation" class="spar-recommendation"></div>
+                        <h4>Options Identified</h4>
+                        <div id="spar-options" class="spar-options"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="run-spar" class="btn btn-spar">🥊 Run SPAR</button>
+                    <button id="spar-to-memo" class="btn btn-primary" style="display: none;">→ Create MEMO</button>
+                    <button id="cancel-spar" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outcome Check Modal -->
+        <div id="outcome-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📊 Outcome Check</h2>
+                    <button id="close-outcome-modal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="outcome-header">
+                        <h3 id="outcome-memo-title">Decision Title</h3>
+                        <span id="outcome-check-date" class="outcome-date"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outcome-actual">What actually happened?</label>
+                        <textarea id="outcome-actual" rows="3" placeholder="Describe the actual outcome..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Assumptions Audit</label>
+                        <div id="assumptions-audit" class="audit-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dissent Audit</label>
+                        <div id="dissent-audit" class="audit-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outcome-verdict">Verdict</label>
+                        <div class="verdict-selector">
+                            <button class="verdict-btn" data-verdict="keep">
+                                ✅ Keep<br><small>Decision stands</small>
+                            </button>
+                            <button class="verdict-btn" data-verdict="adjust">
+                                🔧 Adjust<br><small>Minor corrections</small>
+                            </button>
+                            <button class="verdict-btn" data-verdict="reverse">
+                                ↩️ Reverse<br><small>Undo decision</small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outcome-next-action">Next Action</label>
+                        <input type="text" id="outcome-next-action" placeholder="What should we do now?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outcome-next-date">Next Check Date (optional)</label>
+                        <input type="date" id="outcome-next-date">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-outcome" class="btn btn-primary">Save Outcome Check</button>
+                    <button id="cancel-outcome" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Outcomes Panel -->
+        <div id="upcoming-outcomes" class="upcoming-outcomes" style="display: none;">
+            <h4>📅 Upcoming Outcome Checks</h4>
+            <div id="upcoming-list" class="upcoming-list">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

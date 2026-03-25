@@ -1,0 +1,176 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "q2-roadmap-mobile-first",
+        "title": "Q2 Roadmap: Prioritize Mobile App Redesign",
+        "decision": "Prioritize mobile app redesign over desktop improvements in Q2",
+        "options": [
+            {
+                "id": "mobile-first",
+                "title": "Mobile redesign priority",
+                "rationale": "60% of traffic is mobile, conversion is 20% lower than desktop"
+            },
+            {
+                "id": "desktop-first",
+                "title": "Desktop improvements priority",
+                "rationale": "Higher revenue per user on desktop, enterprise focus"
+            },
+            {
+                "id": "parallel",
+                "title": "Parallel development",
+                "rationale": "Address both, but slower progress on each"
+            }
+        ],
+        "recommendation": "mobile-first",
+        "ramp": {
+            "level": 3,
+            "justification": "Q2 roadmap commitment affects multiple teams for 3 months",
+            "time_to_undo": "6 weeks"
+        },
+        "context": {
+            "constraints": [
+                "Fixed engineering headcount",
+                "Q3 board meeting requires visible progress"
+            ],
+            "assumptions": [
+                "Mobile traffic will continue to grow",
+                "Design system is reusable across platforms"
+            ]
+        },
+        "expected_outcomes": [
+            {
+                "metric": "Mobile conversion rate",
+                "predicted": "Increase by 15%",
+                "confidence": 0.7
+            },
+            {
+                "metric": "App store rating",
+                "predicted": "Improve from 3.8 to 4.2",
+                "confidence": 0.6
+            }
+        ]
+    },
+    "moment": {
+        "moment_id": "q2-roadmap-mobile-first-log",
+        "memo_id": "q2-roadmap-mobile-first",
+        "events": [
+            {
+                "event_id": "e1",
+                "seq": 1,
+                "ts": "2026-01-15T14:00:00Z",
+                "type": "MEMO_CREATED",
+                "actor": "product-lead@example.com",
+                "payload": {},
+                "prev_hash": "",
+                "hash": "f1e2d3c4"
+            },
+            {
+                "event_id": "e2",
+                "seq": 2,
+                "ts": "2026-01-20T10:00:00Z",
+                "type": "DISSENT_ADDED",
+                "actor": "eng-lead@example.com",
+                "payload": {
+                    "dissent_id": "d1"
+                },
+                "prev_hash": "f1e2d3c4",
+                "hash": "g2h3i4j5"
+            },
+            {
+                "event_id": "e3",
+                "seq": 3,
+                "ts": "2026-01-22T09:00:00Z",
+                "type": "COMMIT_STATE_CHANGED",
+                "actor": "product-lead@example.com",
+                "payload": {
+                    "new_state": "Final"
+                },
+                "prev_hash": "g2h3i4j5",
+                "hash": "k4l5m6n7"
+            }
+        ]
+    },
+    "objects": {
+        "dissents": [
+            {
+                "dissent_id": "d1",
+                "author": "eng-lead@example.com",
+                "claim": "Mobile redesign will take 4 months, not 3",
+                "evidence": [
+                    "Previous mobile project took 30% longer than estimated",
+                    "Design team is understaffed"
+                ],
+                "conditions_to_change_mind": "If we hire a contractor to accelerate design",
+                "resolution": {
+                    "type": "mitigated",
+                    "response": "Approved contractor budget for design support",
+                    "resolved_by": "product-lead@example.com",
+                    "resolved_at": "2026-01-21T15:00:00Z"
+                }
+            }
+        ],
+        "doors": {
+            "declare": "Committing to mobile-first roadmap for Q2",
+            "observe": [
+                "Mobile conversion rate",
+                "App store rating",
+                "Team velocity"
+            ],
+            "own": {
+                "name": "Sarah Chen",
+                "role": "Product Lead"
+            },
+            "ready": "Can pivot to desktop focus at Q2 mid-point review",
+            "signals": [
+                {
+                    "metric": "Mobile conversion",
+                    "threshold": "No improvement after 6 weeks",
+                    "horizon": "6 weeks",
+                    "action": "Conduct user research to diagnose"
+                },
+                {
+                    "metric": "Team velocity",
+                    "threshold": "< 70% of planned story points",
+                    "horizon": "4 weeks",
+                    "action": "Scope reduction or timeline extension"
+                }
+            ]
+        },
+        "traces": [
+            {
+                "trace_id": "t1",
+                "claim": "60% of traffic is mobile",
+                "source": {
+                    "type": "analytics",
+                    "uri": "https://analytics.example.com/dashboard/traffic-split",
+                    "retrieved_at": "2026-01-10T10:00:00Z"
+                },
+                "strength": "strong",
+                "quote_index": "Mobile: 60.2%, Desktop: 39.8%"
+            },
+            {
+                "trace_id": "t2",
+                "claim": "Mobile conversion is 20% lower",
+                "source": {
+                    "type": "analytics",
+                    "uri": "https://analytics.example.com/dashboard/conversion"
+                },
+                "strength": "strong"
+            }
+        ],
+        "commit": {
+            "state": "Final",
+            "changed_at": "2026-01-22T09:00:00Z",
+            "changed_by": "product-lead@example.com",
+            "conditions_to_stay_committed": [
+                "Mobile traffic share remains above 50%",
+                "No major enterprise deal requires desktop features"
+            ]
+        },
+        "outcome": {
+            "outcome_id": "o1",
+            "next_check_date": "2026-03-15",
+            "checks": []
+        }
+    }
+}

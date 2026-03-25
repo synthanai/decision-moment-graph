@@ -1,0 +1,613 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dmg.synthai.tech/schema/dmg-core-v0.1.schema.json",
+    "title": "DMG (Decision Moment Graph) Core Schema v0.1",
+    "description": "Schema for Decision Moment Graph - structured decision governance artifacts",
+    "type": "object",
+    "required": [
+        "dmg_version",
+        "memo",
+        "moment"
+    ],
+    "properties": {
+        "dmg_version": {
+            "type": "string",
+            "const": "0.1"
+        },
+        "memo": {
+            "$ref": "#/$defs/Memo"
+        },
+        "moment": {
+            "$ref": "#/$defs/Moment"
+        },
+        "objects": {
+            "type": "object",
+            "properties": {
+                "dissents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/Dissent"
+                    }
+                },
+                "traces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/Trace"
+                    }
+                },
+                "commit": {
+                    "$ref": "#/$defs/Commit"
+                },
+                "outcome": {
+                    "$ref": "#/$defs/Outcome"
+                }
+            }
+        }
+    },
+    "$defs": {
+        "Memo": {
+            "type": "object",
+            "required": [
+                "memo_id",
+                "title",
+                "decision",
+                "options",
+                "recommendation",
+                "ramp"
+            ],
+            "properties": {
+                "memo_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string",
+                    "minLength": 5
+                },
+                "arena_id": {
+                    "type": "string"
+                },
+                "decision": {
+                    "type": "string",
+                    "minLength": 10
+                },
+                "context": {
+                    "type": "object",
+                    "properties": {
+                        "constraints": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "assumptions": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "options": {
+                    "type": "array",
+                    "minItems": 3,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "description"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "pros": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "cons": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "recommendation": {
+                    "type": "string",
+                    "minLength": 10
+                },
+                "risks": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "risk": {
+                                "type": "string"
+                            },
+                            "likelihood": {
+                                "type": "string",
+                                "enum": [
+                                    "low",
+                                    "medium",
+                                    "high"
+                                ]
+                            },
+                            "impact": {
+                                "type": "string",
+                                "enum": [
+                                    "low",
+                                    "medium",
+                                    "high"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "mitigations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ramp": {
+                    "$ref": "#/$defs/Ramp"
+                },
+                "doors": {
+                    "$ref": "#/$defs/Doors"
+                },
+                "owners": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "role"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "role": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "review_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "expected_outcomes": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "metric",
+                            "expected",
+                            "confidence"
+                        ],
+                        "properties": {
+                            "metric": {
+                                "type": "string"
+                            },
+                            "horizon": {
+                                "type": "string"
+                            },
+                            "expected": {
+                                "type": "string"
+                            },
+                            "confidence": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 1
+                            },
+                            "notes": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "version": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Moment": {
+            "type": "object",
+            "required": [
+                "moment_id",
+                "memo_id",
+                "events"
+            ],
+            "properties": {
+                "moment_id": {
+                    "type": "string"
+                },
+                "memo_id": {
+                    "type": "string"
+                },
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/MomentEvent"
+                    }
+                }
+            }
+        },
+        "MomentEvent": {
+            "type": "object",
+            "required": [
+                "event_id",
+                "seq",
+                "ts",
+                "type",
+                "actor"
+            ],
+            "properties": {
+                "event_id": {
+                    "type": "string"
+                },
+                "seq": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "ts": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "MEMO_CREATED",
+                        "MEMO_UPDATED",
+                        "BLOCK_ADDED",
+                        "BLOCK_UPDATED",
+                        "RAMP_SET",
+                        "DOORS_UPDATED",
+                        "DISSENT_ADDED",
+                        "DISSENT_RESOLVED",
+                        "SOURCE_ATTACHED",
+                        "COMMIT_STATE_CHANGED",
+                        "APPROVAL_GRANTED",
+                        "EXPORTED",
+                        "OUTCOME_RECORDED"
+                    ]
+                },
+                "actor": {
+                    "type": "string"
+                },
+                "payload": {
+                    "type": "object"
+                },
+                "prev_hash": {
+                    "type": "string"
+                },
+                "hash": {
+                    "type": "string"
+                }
+            }
+        },
+        "Ramp": {
+            "type": "object",
+            "required": [
+                "level"
+            ],
+            "properties": {
+                "level": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                },
+                "justification": {
+                    "type": "string"
+                },
+                "time_to_undo": {
+                    "type": "string"
+                }
+            }
+        },
+        "Doors": {
+            "type": "object",
+            "properties": {
+                "declare": {
+                    "type": "string"
+                },
+                "observe": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "own": {
+                    "type": "object",
+                    "required": [
+                        "name"
+                    ],
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "role": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "ready": {
+                    "type": "string"
+                },
+                "signals": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "metric",
+                            "threshold"
+                        ],
+                        "properties": {
+                            "metric": {
+                                "type": "string"
+                            },
+                            "threshold": {
+                                "type": "string"
+                            },
+                            "horizon": {
+                                "type": "string"
+                            },
+                            "action": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Dissent": {
+            "type": "object",
+            "required": [
+                "dissent_id",
+                "author",
+                "claim",
+                "conditions_to_change_mind"
+            ],
+            "properties": {
+                "dissent_id": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                },
+                "claim": {
+                    "type": "string"
+                },
+                "evidence": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "conditions_to_change_mind": {
+                    "type": "string"
+                },
+                "resolution": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "accepted",
+                                "mitigated",
+                                "deferred",
+                                "rejected"
+                            ]
+                        },
+                        "response": {
+                            "type": "string"
+                        },
+                        "resolved_by": {
+                            "type": "string"
+                        },
+                        "resolved_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                }
+            }
+        },
+        "Trace": {
+            "type": "object",
+            "required": [
+                "trace_id",
+                "claim",
+                "source"
+            ],
+            "properties": {
+                "trace_id": {
+                    "type": "string"
+                },
+                "claim": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "uri"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        },
+                        "uri": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "retrieved_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "strength": {
+                    "type": "string",
+                    "enum": [
+                        "strong",
+                        "medium",
+                        "weak"
+                    ]
+                },
+                "quote_index": {
+                    "type": "string"
+                }
+            }
+        },
+        "Commit": {
+            "type": "object",
+            "required": [
+                "state"
+            ],
+            "properties": {
+                "state": {
+                    "type": "string",
+                    "enum": [
+                        "Draft",
+                        "Proposed",
+                        "Approved",
+                        "Final",
+                        "Reversed",
+                        "Superseded"
+                    ]
+                },
+                "changed_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "changed_by": {
+                    "type": "string"
+                },
+                "conditions_to_stay_committed": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "Outcome": {
+            "type": "object",
+            "required": [
+                "outcome_id"
+            ],
+            "properties": {
+                "outcome_id": {
+                    "type": "string"
+                },
+                "next_check_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "checks": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "check_date"
+                        ],
+                        "properties": {
+                            "check_date": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "actual_result": {
+                                "type": "string"
+                            },
+                            "assumptions_audit": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "assumption": {
+                                            "type": "string"
+                                        },
+                                        "accurate": {
+                                            "type": "boolean"
+                                        },
+                                        "learning": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "dissent_audit": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "dissent_id": {
+                                            "type": "string"
+                                        },
+                                        "vindicated": {
+                                            "type": "boolean"
+                                        },
+                                        "note": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "expected_outcomes_audit": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "metric": {
+                                            "type": "string"
+                                        },
+                                        "predicted": {
+                                            "type": "string"
+                                        },
+                                        "confidence": {
+                                            "type": "number"
+                                        },
+                                        "actual": {
+                                            "type": "string"
+                                        },
+                                        "delta": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "verdict": {
+                                "type": "string",
+                                "enum": [
+                                    "keep",
+                                    "adjust",
+                                    "reverse"
+                                ]
+                            },
+                            "next_action": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

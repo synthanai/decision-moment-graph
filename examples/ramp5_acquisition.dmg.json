@@ -1,0 +1,306 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "acq-cloudnative-inc",
+        "title": "Acquire CloudNative Inc for $45M",
+        "decision": "Proceed with acquisition of CloudNative Inc at $45M valuation",
+        "options": [
+            {
+                "id": "acquire-full",
+                "title": "Full acquisition at $45M",
+                "rationale": "Immediate talent, technology, and customer base acquisition"
+            },
+            {
+                "id": "acquire-acquihire",
+                "title": "Acqui-hire only ($15M)",
+                "rationale": "Get the team without product/customer liabilities"
+            },
+            {
+                "id": "partnership",
+                "title": "Strategic partnership instead",
+                "rationale": "Lower risk, test collaboration before commitment"
+            },
+            {
+                "id": "build-internal",
+                "title": "Build capability internally",
+                "rationale": "Maintain control, avoid integration complexity"
+            }
+        ],
+        "recommendation": "acquire-full",
+        "ramp": {
+            "level": 5,
+            "justification": "M&A decision, $45M capital commitment, irreversible after close",
+            "time_to_undo": "Never (post-close)"
+        },
+        "context": {
+            "constraints": [
+                "Board approval required",
+                "Due diligence must complete in 60 days",
+                "Regulatory approval needed (HSR filing)",
+                "Retention packages for key employees"
+            ],
+            "assumptions": [
+                "CloudNative's ARR of $8M is accurate",
+                "Key engineers (5) will accept retention offers",
+                "No undisclosed liabilities",
+                "Technology integrates with our stack"
+            ]
+        },
+        "risks": [
+            {
+                "description": "Key talent leaves post-acquisition",
+                "likelihood": "medium",
+                "impact": "critical"
+            },
+            {
+                "description": "Customer churn during transition",
+                "likelihood": "medium",
+                "impact": "high"
+            },
+            {
+                "description": "Hidden technical debt",
+                "likelihood": "low",
+                "impact": "high"
+            },
+            {
+                "description": "Cultural integration challenges",
+                "likelihood": "high",
+                "impact": "medium"
+            }
+        ],
+        "mitigations": [
+            {
+                "risk": "Key talent leaves",
+                "action": "4-year retention packages with accelerated cliff for top 5 engineers"
+            },
+            {
+                "risk": "Customer churn",
+                "action": "Joint customer success team for 6 months, grandfather pricing"
+            },
+            {
+                "risk": "Hidden technical debt",
+                "action": "External code audit as diligence condition"
+            },
+            {
+                "risk": "Cultural integration",
+                "action": "CloudNative operates as semi-autonomous unit for 12 months"
+            }
+        ],
+        "expected_outcomes": [
+            {
+                "metric": "ARR contribution",
+                "predicted": "$12M combined ARR by EOY",
+                "confidence": 0.7
+            },
+            {
+                "metric": "Key talent retention",
+                "predicted": "80% of top 10 retained at 2 years",
+                "confidence": 0.6
+            },
+            {
+                "metric": "Product integration",
+                "predicted": "Unified platform in 18 months",
+                "confidence": 0.5
+            }
+        ],
+        "owners": [
+            {
+                "name": "Board of Directors",
+                "role": "Final approval"
+            },
+            {
+                "name": "CEO",
+                "role": "Deal sponsor"
+            },
+            {
+                "name": "CFO",
+                "role": "Financial diligence"
+            },
+            {
+                "name": "CTO",
+                "role": "Technical diligence"
+            }
+        ],
+        "review_date": "2026-07-26"
+    },
+    "moment": {
+        "moment_id": "acq-cloudnative-inc-log",
+        "memo_id": "acq-cloudnative-inc",
+        "events": [
+            {
+                "event_id": "e1",
+                "seq": 1,
+                "ts": "2026-01-01T10:00:00Z",
+                "type": "MEMO_CREATED",
+                "actor": "ceo@example.com",
+                "payload": {
+                    "sensitivity": "board-confidential"
+                },
+                "prev_hash": "",
+                "hash": "m1n2o3p4"
+            },
+            {
+                "event_id": "e2",
+                "seq": 2,
+                "ts": "2026-01-05T14:00:00Z",
+                "type": "DISSENT_ADDED",
+                "actor": "cfo@example.com",
+                "payload": {
+                    "dissent_id": "d1"
+                },
+                "prev_hash": "m1n2o3p4",
+                "hash": "q5r6s7t8"
+            },
+            {
+                "event_id": "e3",
+                "seq": 3,
+                "ts": "2026-01-10T11:00:00Z",
+                "type": "SOURCE_ATTACHED",
+                "actor": "cto@example.com",
+                "payload": {
+                    "trace_id": "t1"
+                },
+                "prev_hash": "q5r6s7t8",
+                "hash": "u9v0w1x2"
+            },
+            {
+                "event_id": "e4",
+                "seq": 4,
+                "ts": "2026-01-15T09:00:00Z",
+                "type": "DISSENT_RESOLVED",
+                "actor": "ceo@example.com",
+                "payload": {
+                    "dissent_id": "d1",
+                    "resolution": "mitigated"
+                },
+                "prev_hash": "u9v0w1x2",
+                "hash": "y3z4a5b6"
+            },
+            {
+                "event_id": "e5",
+                "seq": 5,
+                "ts": "2026-01-20T10:00:00Z",
+                "type": "APPROVAL_GRANTED",
+                "actor": "board@example.com",
+                "payload": {
+                    "scope": "acquisition_approved",
+                    "vote": "5-0"
+                },
+                "prev_hash": "y3z4a5b6",
+                "hash": "c7d8e9f0"
+            },
+            {
+                "event_id": "e6",
+                "seq": 6,
+                "ts": "2026-01-22T15:00:00Z",
+                "type": "COMMIT_STATE_CHANGED",
+                "actor": "ceo@example.com",
+                "payload": {
+                    "new_state": "Final"
+                },
+                "prev_hash": "c7d8e9f0",
+                "hash": "g1h2i3j4"
+            }
+        ]
+    },
+    "objects": {
+        "dissents": [
+            {
+                "dissent_id": "d1",
+                "author": "cfo@example.com",
+                "claim": "Valuation is 15% too high based on comparable transactions",
+                "evidence": [
+                    "Recent comparable deals averaged 5x ARR, this is 5.6x",
+                    "CloudNative's growth rate slowed in Q4"
+                ],
+                "conditions_to_change_mind": "If we secure a $3M earnout structure tied to retention",
+                "resolution": {
+                    "type": "mitigated",
+                    "response": "Negotiated $3M earnout over 2 years tied to key retention",
+                    "resolved_by": "ceo@example.com",
+                    "resolved_at": "2026-01-15T09:00:00Z"
+                }
+            }
+        ],
+        "doors": {
+            "declare": "Proceeding with CloudNative acquisition at $45M ($42M + $3M earnout)",
+            "observe": [
+                "Key employee retention",
+                "Customer churn rate",
+                "ARR trajectory",
+                "Integration milestones"
+            ],
+            "own": {
+                "name": "CEO",
+                "role": "Deal Sponsor"
+            },
+            "ready": "Walk-away clause until HSR clearance; post-close mitigation only",
+            "signals": [
+                {
+                    "metric": "Key employee departures",
+                    "threshold": "> 20% in first 6 months",
+                    "horizon": "6 months",
+                    "action": "Emergency retention program"
+                },
+                {
+                    "metric": "Customer churn",
+                    "threshold": "> 10% annualized",
+                    "horizon": "12 months",
+                    "action": "Product integration acceleration"
+                },
+                {
+                    "metric": "ARR trajectory",
+                    "threshold": "< $10M at 12 months",
+                    "horizon": "12 months",
+                    "action": "Executive review of integration strategy"
+                }
+            ]
+        },
+        "traces": [
+            {
+                "trace_id": "t1",
+                "claim": "CloudNative's code quality is acceptable for integration",
+                "source": {
+                    "type": "audit",
+                    "uri": "https://confidential.example.com/diligence/cloudnative-code-audit.pdf",
+                    "retrieved_at": "2026-01-10T10:00:00Z"
+                },
+                "strength": "strong",
+                "quote_index": "Overall rating: B+. No critical security issues. Technical debt: moderate."
+            },
+            {
+                "trace_id": "t2",
+                "claim": "Comparable M&A deals average 5x ARR",
+                "source": {
+                    "type": "market_data",
+                    "uri": "https://pitchbook.com/saas-valuations-q4-2025"
+                },
+                "strength": "strong"
+            },
+            {
+                "trace_id": "t3",
+                "claim": "CloudNative ARR is $8M",
+                "source": {
+                    "type": "financials",
+                    "uri": "https://confidential.example.com/diligence/cloudnative-financials.xlsx"
+                },
+                "strength": "strong"
+            }
+        ],
+        "commit": {
+            "state": "Final",
+            "changed_at": "2026-01-22T15:00:00Z",
+            "changed_by": "ceo@example.com",
+            "conditions_to_stay_committed": [
+                "HSR approval received",
+                "No material adverse change",
+                "Key employees sign retention agreements"
+            ]
+        },
+        "outcome": {
+            "outcome_id": "o1",
+            "next_check_date": "2026-07-26",
+            "checks": []
+        }
+    }
+}

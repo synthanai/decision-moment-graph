@@ -1,0 +1,21 @@
+{
+    "dmg_version": "0.1",
+    "memo": {
+        "memo_id": "test-invalid-001",
+        "title": "Only two options",
+        "options": [
+            {
+                "name": "Yes",
+                "description": "Do it"
+            },
+            {
+                "name": "No",
+                "description": "Don't do it"
+            }
+        ],
+        "ramp": {
+            "level": 3
+        }
+    },
+    "_test_notes": "Should fail: Only 2 options when 3+ required"
+}

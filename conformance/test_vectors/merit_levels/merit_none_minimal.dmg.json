@@ -1,0 +1,38 @@
+{
+    "dmg_version": "0.2",
+    "_description": "MERIT-None: Only has MEMO (E), missing OUTCOME, DOORS, MOMENT events, TRACE",
+    "_expected_level": "MERIT-None",
+    "memo": {
+        "memo_id": "merit-none-test",
+        "title": "Decision with minimal structure",
+        "decision": "A decision that only satisfies Evidenced principle",
+        "options": [
+            {
+                "id": "a",
+                "title": "Option A",
+                "rationale": "First option"
+            },
+            {
+                "id": "b",
+                "title": "Option B",
+                "rationale": "Second option"
+            },
+            {
+                "id": "c",
+                "title": "Option C",
+                "rationale": "Third option"
+            }
+        ],
+        "recommendation": "a",
+        "ramp": {
+            "level": 1,
+            "justification": "Low",
+            "time_to_undo": "1h"
+        }
+    },
+    "moment": {
+        "moment_id": "m1",
+        "memo_id": "merit-none-test",
+        "events": []
+    }
+}

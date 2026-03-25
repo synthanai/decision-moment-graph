@@ -1,0 +1,382 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://dmg.synthai.tech/schema/dmg-swarm-v0.1.schema.json",
+    "title": "DMG Swarm Extension Schema v0.1",
+    "description": "Extension schema for SWARM-RESOLVE: TaskGraph and SubAgent primitives for parallel agent coordination",
+    "type": "object",
+    "properties": {
+        "swarm": {
+            "$ref": "#/$defs/Swarm"
+        }
+    },
+    "$defs": {
+        "Swarm": {
+            "type": "object",
+            "description": "Root container for swarm coordination state",
+            "required": [
+                "swarm_id",
+                "task_graph",
+                "status"
+            ],
+            "properties": {
+                "swarm_id": {
+                    "type": "string",
+                    "description": "Unique identifier for this swarm execution"
+                },
+                "parent_moment_id": {
+                    "type": "string",
+                    "description": "Link to parent DMG MOMENT that spawned this swarm"
+                },
+                "root_goal": {
+                    "type": "string",
+                    "description": "High-level objective decomposed into task graph"
+                },
+                "task_graph": {
+                    "$ref": "#/$defs/TaskGraph"
+                },
+                "sub_agents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/SubAgent"
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "pending",
+                        "running",
+                        "complete",
+                        "failed",
+                        "terminated"
+                    ]
+                },
+                "budget": {
+                    "$ref": "#/$defs/SwarmBudget"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "completed_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "TaskGraph": {
+            "type": "object",
+            "description": "Directed acyclic graph of work items with dependencies",
+            "required": [
+                "nodes"
+            ],
+            "properties": {
+                "nodes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/TaskNode"
+                    }
+                },
+                "edges": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/TaskEdge"
+                    }
+                }
+            }
+        },
+        "TaskNode": {
+            "type": "object",
+            "description": "Single unit of work in the task graph",
+            "required": [
+                "task_id",
+                "description",
+                "status"
+            ],
+            "properties": {
+                "task_id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "What this task should accomplish"
+                },
+                "agent_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "SubAgent assigned to this task (null if unassigned)"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "blocked",
+                        "ready",
+                        "running",
+                        "done",
+                        "failed",
+                        "skipped"
+                    ]
+                },
+                "blocked_by": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Task IDs that must complete before this can start"
+                },
+                "dmg_moment_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Link to DMG MOMENT created when this task executes an action"
+                },
+                "output": {
+                    "type": "object",
+                    "description": "Result payload from task completion"
+                },
+                "error": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Error message if task failed"
+                },
+                "priority": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5,
+                    "default": 3,
+                    "description": "Execution priority (1=highest, 5=lowest)"
+                },
+                "estimated_cost": {
+                    "type": "number",
+                    "description": "Estimated token/API cost for this task"
+                },
+                "actual_cost": {
+                    "type": "number",
+                    "description": "Actual cost after execution"
+                },
+                "started_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "completed_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "TaskEdge": {
+            "type": "object",
+            "description": "Dependency relationship between tasks",
+            "required": [
+                "from_task",
+                "to_task",
+                "type"
+            ],
+            "properties": {
+                "from_task": {
+                    "type": "string",
+                    "description": "Task ID that must complete first"
+                },
+                "to_task": {
+                    "type": "string",
+                    "description": "Task ID that depends on from_task"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "blocks",
+                        "informs"
+                    ],
+                    "description": "blocks = hard dependency; informs = soft (output shared but not required)"
+                }
+            }
+        },
+        "SubAgent": {
+            "type": "object",
+            "description": "Isolated execution context for parallel work",
+            "required": [
+                "agent_id",
+                "task_id",
+                "status"
+            ],
+            "properties": {
+                "agent_id": {
+                    "type": "string"
+                },
+                "parent_agent_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "If spawned by another SubAgent (recursive)"
+                },
+                "task_id": {
+                    "type": "string",
+                    "description": "TaskNode this agent is executing"
+                },
+                "model_config": {
+                    "$ref": "#/$defs/ModelConfig"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "read_memory",
+                            "write_memory",
+                            "execute_action",
+                            "spawn_subagent",
+                            "escalate"
+                        ]
+                    },
+                    "description": "Scoped capabilities for this agent"
+                },
+                "depth": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 3,
+                    "description": "Recursion level (0 = coordinator, max 3 per INV-SWARM-01)"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "spawned",
+                        "working",
+                        "done",
+                        "failed",
+                        "terminated"
+                    ]
+                },
+                "context_summary": {
+                    "type": "string",
+                    "description": "Compressed summary of agent's isolated context (for audit)"
+                },
+                "spawned_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "completed_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "ModelConfig": {
+            "type": "object",
+            "description": "LLM configuration for a SubAgent",
+            "properties": {
+                "tier": {
+                    "type": "string",
+                    "enum": [
+                        "compact",
+                        "cosy",
+                        "comprehensive",
+                        "ultra"
+                    ],
+                    "default": "comprehensive"
+                },
+                "model_id": {
+                    "type": "string",
+                    "description": "Specific model identifier (e.g., 'gemini-2.5-pro')"
+                },
+                "max_tokens": {
+                    "type": "integer"
+                },
+                "temperature": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2
+                }
+            }
+        },
+        "SwarmBudget": {
+            "type": "object",
+            "description": "Resource constraints for swarm execution (INV-SWARM-02)",
+            "properties": {
+                "max_total_cost": {
+                    "type": "number",
+                    "description": "Maximum allowed total cost in dollars"
+                },
+                "max_parallel_agents": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10,
+                    "default": 5,
+                    "description": "Maximum concurrent SubAgents"
+                },
+                "max_execution_time_seconds": {
+                    "type": "integer",
+                    "description": "Timeout for entire swarm (kill switch trigger)"
+                },
+                "current_cost": {
+                    "type": "number",
+                    "description": "Running total of actual costs"
+                },
+                "alerts": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "threshold_percent": {
+                                "type": "integer"
+                            },
+                            "triggered": {
+                                "type": "boolean"
+                            },
+                            "triggered_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "SwarmEvent": {
+            "type": "object",
+            "description": "Events logged to parent MOMENT for swarm operations",
+            "required": [
+                "event_type",
+                "ts"
+            ],
+            "properties": {
+                "event_type": {
+                    "type": "string",
+                    "enum": [
+                        "SWARM_SPAWNED",
+                        "SWARM_DECOMPOSED",
+                        "TASK_READY",
+                        "TASK_STARTED",
+                        "TASK_COMPLETED",
+                        "TASK_FAILED",
+                        "SUBAGENT_SPAWNED",
+                        "SUBAGENT_COMPLETED",
+                        "SUBAGENT_TERMINATED",
+                        "BUDGET_ALERT",
+                        "SWARM_SYNTHESIZED",
+                        "SWARM_COMPLETED",
+                        "SWARM_TERMINATED",
+                        "ESCALATION_TRIGGERED"
+                    ]
+                },
+                "ts": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "task_id": {
+                    "type": "string"
+                },
+                "agent_id": {
+                    "type": "string"
+                },
+                "payload": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
