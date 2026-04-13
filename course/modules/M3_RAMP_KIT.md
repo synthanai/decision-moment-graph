@@ -159,4 +159,4 @@ Always know which you're in.
 
 ## Next Step
 
-→ [M4: DOORS-KIT — Reversibility](./M4_DOORS_KIT.md)
+→ [M4: DOORS-KIT, Reversibility](./M4_DOORS_KIT.md)

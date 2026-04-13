@@ -89,7 +89,7 @@ List 2-3 conditions that, if violated, should trigger a review:
 ]
 ```
 
-This prevents "zombie commitments"—decisions that should have been revisited but weren't.
+This prevents "zombie commitments", decisions that should have been revisited but weren't.
 
 ---
 
@@ -160,4 +160,4 @@ You always know:
 
 ## Next Step
 
-→ [M8: OUTCOME-KIT — Learning Loops](./M8_OUTCOME_KIT.md)
+→ [M8: OUTCOME-KIT, Learning Loops](./M8_OUTCOME_KIT.md)

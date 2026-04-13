@@ -9,7 +9,7 @@
 
 This document provides an explicit mapping between **SPARKIT** (Structured Persona-Argumentation Kit) and the **Agentic Reasoning** taxonomy from the [2025 survey](https://arxiv.org/abs/2601.12538) on LLMs as autonomous agents.
 
-**Key Insight**: SPARKIT is a subset of agentic reasoning — it's a strong collective deliberation pattern that improves planning and reduces single-thread errors. Agentic reasoning is SPARKIT + action + feedback + memory + learning in dynamic environments.
+**Key Insight**: SPARKIT is a subset of agentic reasoning, it's a strong collective deliberation pattern that improves planning and reduces single-thread errors. Agentic reasoning is SPARKIT + action + feedback + memory + learning in dynamic environments.
 
 ---
 
@@ -69,7 +69,7 @@ graph TB
 
 ### Verdict
 
-**SPARKIT lives primarily in the Foundational layer** with strong contributions to the Collective layer. It lacks the Self-Evolving layer entirely — this is where DMG integration becomes critical.
+**SPARKIT lives primarily in the Foundational layer** with strong contributions to the Collective layer. It lacks the Self-Evolving layer entirely, this is where DMG integration becomes critical.
 
 ---
 
@@ -240,7 +240,7 @@ flowchart LR
 
 > **SPARKIT supplies the thought architecture. Agentic reasoning supplies the interaction + learning architecture. DMG bridges them.**
 
-The future isn't better reasoning traces — it's closed learning loops.
+The future isn't better reasoning traces, it's closed learning loops.
 
 ```
 Reason → Act → Observe → Update → Coordinate → Govern

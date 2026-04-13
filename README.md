@@ -53,13 +53,13 @@ python dmg/cli/lifecycle.py "Should we migrate to microservices?" --dry-run
 
 Output:
 ```
-📍 Phase 1: FRAME — Structure question & options
-📍 Phase 2: SPAR — Deliberate & Challenge
-📍 Phase 3: GATE — Check Governance & Reversibility
-📍 Phase 4: COMMIT — Sign & Hash (The "Capture")
-📍 Phase 5: ENACT — Execute instructions
-📍 Phase 6: YIELD — Measure results
-📍 Cycle Complete: GAUGE — Calibrate confidence & learn
+📍 Phase 1: FRAME, Structure question & options
+📍 Phase 2: SPAR, Deliberate & Challenge
+📍 Phase 3: GATE, Check Governance & Reversibility
+📍 Phase 4: COMMIT, Sign & Hash (The "Capture")
+📍 Phase 5: ENACT, Execute instructions
+📍 Phase 6: YIELD, Measure results
+📍 Cycle Complete: GAUGE, Calibrate confidence & learn
 ```
 
 ### 3. Use as Library
@@ -191,4 +191,4 @@ See [ATTRIBUTION.md](ATTRIBUTION.md) for attribution guidelines.
 | **[VAULT-KIT](https://github.com/synthanai/vault-kit)** | The **Protocol** for privacy-first coordination. |
 | **[agentic-kit](https://github.com/synthanai/agentic-kit)** | The **Infrastructure** for reliable agent systems. |
 
-> *Built by [SYNTHAI](https://synthai.tech) — Decision Intelligence for the AI Era.*
+> *Built by [SYNTHAI](https://synthai.tech), Decision Intelligence for the AI Era.*

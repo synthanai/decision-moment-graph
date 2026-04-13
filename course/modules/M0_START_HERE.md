@@ -16,11 +16,11 @@ By the end of this course, you will:
 > **Store decision moments, not raw chats, objects or data.**
 
 DMG is an open standard for decision governance. It enforces the **MERIT** Standard:
-- **M**easured — expected outcomes defined
-- **E**videnced — traces & citations
-- **R**eversible — rollback plans (DOORS)
-- **I**nspectable — open audit logs
-- **T**raceable — provenance chain
+- **M**easured, expected outcomes defined
+- **E**videnced, traces & citations
+- **R**eversible, rollback plans (DOORS)
+- **I**nspectable, open audit logs
+- **T**raceable, provenance chain
 
 ---
 
@@ -94,4 +94,4 @@ That's a MEMO skeleton. You'll build on this throughout the course.
 
 ## Next Step
 
-→ [M1: MEMO-KIT — The Decision Brief](./M1_MEMO_KIT.md)
+→ [M1: MEMO-KIT, The Decision Brief](./M1_MEMO_KIT.md)

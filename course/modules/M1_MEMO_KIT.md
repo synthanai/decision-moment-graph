@@ -25,7 +25,7 @@ A **MEMO** is DMG's core artifact: a versioned decision brief that captures:
 - Who owns it
 - When to revisit
 
-> Think of it as a "court ruling" for your decision—portable, quotable, defensible.
+> Think of it as a "court ruling" for your decision, portable, quotable, defensible.
 
 ---
 
@@ -137,10 +137,10 @@ Title: Q2 Feature Launch Timing
 Decision: Launch privacy dashboard to 10% of users by March 15
 
 Options:
-1. Launch to 100% immediately — Fast, but risky
-2. Launch to 10% (chosen) — Validates before scale
-3. Delay to Q3 — Safer, but loses momentum
-4. Do nothing — Leaves gap in compliance story
+1. Launch to 100% immediately, Fast, but risky
+2. Launch to 10% (chosen), Validates before scale
+3. Delay to Q3, Safer, but loses momentum
+4. Do nothing, Leaves gap in compliance story
 
 Recommendation: Option 2. We get real-world validation while
 limiting blast radius. If metrics hold, expand Week 4.
@@ -169,4 +169,4 @@ When you have a MEMO, you can answer:
 
 ## Next Step
 
-→ [M2: MOMENT-KIT — Provenance](./M2_MOMENT_KIT.md)
+→ [M2: MOMENT-KIT, Provenance](./M2_MOMENT_KIT.md)

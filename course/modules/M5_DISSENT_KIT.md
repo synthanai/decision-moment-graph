@@ -198,4 +198,4 @@ The goal isn't to eliminate disagreement. It's to **capture it structurally** so
 
 ## Next Step
 
-→ [M6: TRACE-KIT — Evidence](./M6_TRACE_KIT.md)
+→ [M6: TRACE-KIT, Evidence](./M6_TRACE_KIT.md)

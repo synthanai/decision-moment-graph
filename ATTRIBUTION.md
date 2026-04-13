@@ -17,14 +17,14 @@ Include one of the following in your README, documentation, or about page:
 
 **Text:**
 ```
-Built on DMG Standard — https://github.com/synthanai/dmg-open-standard
+Built on DMG Standard, https://github.com/synthanai/dmg-open-standard
 ```
 
 ### For Academic Work
 
 Please cite:
 ```
-DMG: Decision Moment Graph — Open Standard for Decision Governance
+DMG: Decision Moment Graph, Open Standard for Decision Governance
 SYNTHAI TECH PTY LTD, 2026
 https://github.com/synthanai/dmg-open-standard
 ```

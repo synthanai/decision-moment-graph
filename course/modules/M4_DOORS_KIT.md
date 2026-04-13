@@ -201,4 +201,4 @@ If you can't fill out DOORS, you're not ready to finalize the decision.
 
 ## Next Step
 
-→ [M5: DISSENT-KIT — Productive Disagreement](./M5_DISSENT_KIT.md)
+→ [M5: DISSENT-KIT, Productive Disagreement](./M5_DISSENT_KIT.md)

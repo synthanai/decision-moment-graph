@@ -411,7 +411,7 @@ dmg validate --merit --badge decision.dmg.json > badge.svg
 
 ## Recommendations
 
-None — this decision achieves full MERIT compliance.
+None, this decision achieves full MERIT compliance.
 ```
 
 ### 5.3 Exit Codes
@@ -548,7 +548,7 @@ export function validateMerit(dmg) {
 ║                         MERIT VALIDATION QUICK REFERENCE                       ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣
 ║                                                                               ║
-║  "DMG decisions have MERIT — Measured with OUTCOME, Evidenced via MEMO,       ║
+║  "DMG decisions have MERIT, Measured with OUTCOME, Evidenced via MEMO,       ║
 ║   Reversible thru DOORS, Inspectable in MOMENT, Traceable by TRACE."          ║
 ║                                                                               ║
 ╠═══════════════════════════════════════════════════════════════════════════════╣

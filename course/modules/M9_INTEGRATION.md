@@ -108,7 +108,7 @@ costs will exceed build costs within 18 months
 **Conditions to change mind**: If we can exit Mixpanel
 with < 2 weeks migration effort, vendor is acceptable
 
-**Resolution**: mitigated — Added 6-month exit clause to contract
+**Resolution**: mitigated, Added 6-month exit clause to contract
 ```
 
 ```markdown
@@ -208,7 +208,7 @@ Pick a decision you're facing. Build a complete DMG:
 5. **COMMIT**: State, conditions to stay committed
 6. **OUTCOME**: Schedule a check date
 
-Don't skip sections—see how they connect.
+Don't skip sections, see how they connect.
 
 ---
 
@@ -246,4 +246,4 @@ When all kits work together:
 
 ## Next Step
 
-→ [M10: Calibration Track — Predictions](./M10_CALIBRATION_TRACK.md)
+→ [M10: Calibration Track, Predictions](./M10_CALIBRATION_TRACK.md)

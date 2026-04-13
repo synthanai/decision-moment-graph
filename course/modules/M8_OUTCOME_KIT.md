@@ -185,4 +185,4 @@ OUTCOME turns every decision into a learning opportunity.
 
 ## Next Step
 
-→ [M9: Integration — Full DMG Workflow](./M9_INTEGRATION.md)
+→ [M9: Integration, Full DMG Workflow](./M9_INTEGRATION.md)

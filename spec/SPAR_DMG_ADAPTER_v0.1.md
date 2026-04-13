@@ -196,7 +196,7 @@ The SPAR → DMG Adapter converts SPAR debate outputs into DMG-compliant decisio
       {
         "dissent_id": "dissent-from-north",
         "author": "spar:north",
-        "claim": "Build in-house for control — vendor lock-in is real risk",
+        "claim": "Build in-house for control, vendor lock-in is real risk",
         "evidence": ["Full customization", "No vendor lock-in"],
         "conditions_to_change_mind": "If integration exceeds 3 months"
       }

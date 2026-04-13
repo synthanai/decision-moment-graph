@@ -8,7 +8,7 @@
 
 ## 1. Executive Summary
 
-This document specifies the **SPARKIT-Agentic** architecture — the evolution of SPARKIT from a deliberation protocol into a full decision-and-execution engine.
+This document specifies the **SPARKIT-Agentic** architecture, the evolution of SPARKIT from a deliberation protocol into a full decision-and-execution engine.
 
 **Core Thesis**: SPARKIT provides the *deliberation kernel*. DMG provides the *persistence and learning layer*. Together, they form a complete agentic reasoning system.
 
@@ -61,7 +61,7 @@ SPARKIT + DMG is **closed-loop** — decisions are tracked, outcomes measured, a
 
 ### 3.1 The RESOLVE Loop
 
-The agentic loop follows the **RESOLVE** protocol — a 7-phase cycle that turns uncertainty into action:
+The agentic loop follows the **RESOLVE** protocol, a 7-phase cycle that turns uncertainty into action:
 
 > **R**econ → **E**nrich → **S**PAR → **O**kay → **L**aunch → **V**erify → **E**ncode
 

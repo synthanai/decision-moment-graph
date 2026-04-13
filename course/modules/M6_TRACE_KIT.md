@@ -84,7 +84,7 @@ With TRACE:
 | **medium** | Indirect or partially verified | Small sample interviews, dated research |
 | **weak** | Anecdotal, unverified, or assumed | Hearsay, single observation, hypothesis |
 
-**Rule**: Weak evidence isn't forbidden—but it must be labeled.
+**Rule**: Weak evidence isn't forbidden, but it must be labeled.
 
 ---
 
@@ -144,4 +144,4 @@ When you add TRACE:
 
 ## Next Step
 
-→ [M7: COMMIT-KIT — State Transitions](./M7_COMMIT_KIT.md)
+→ [M7: COMMIT-KIT, State Transitions](./M7_COMMIT_KIT.md)

@@ -40,7 +40,7 @@ A decision is not a point. It is a *graph of moments*.
 
 DMG establishes a new class of context for the AI era:
 
-> **Decision Moment Graph**: Structured records of commitments, tradeoffs, and reversibility—designed for machines to synthesize and humans to audit.
+> **Decision Moment Graph**: Structured records of commitments, tradeoffs, and reversibility, designed for machines to synthesize and humans to audit.
 
 When you store decisions as structured objects:
 - **LLMs can reason** over your decision history, not just your documents
@@ -65,13 +65,13 @@ The rigor required for a decision should be proportional to how hard it is to un
 A decision without a rollback plan is a gamble. DOORS makes reversibility explicit before commitment.
 
 ### 5. Predictions Are Testable
-If you can't say what you expect to happen with what confidence, you're not deciding—you're hoping.
+If you can't say what you expect to happen with what confidence, you're not deciding, you're hoping.
 
 ### 6. Every Decision Deserves An Outcome Check
 Learning happens when you compare what you predicted to what actually happened. No check = no learning.
 
 ### 7. Provenance Is Non-Negotiable
-Every change to a decision must be logged. MOMENT makes decisions inspectable—technically and legally.
+Every change to a decision must be logged. MOMENT makes decisions inspectable, technically and legally.
 
 ---
 
@@ -112,10 +112,10 @@ Start today:
 4. Set an outcome check date
 5. Compare your prediction to reality
 
-**The future belongs to those who decide well—not just those who decide fast.**
+**The future belongs to those who decide well, not just those who decide fast.**
 
 ---
 
-*Decision Moment Graph — An open standard for decision governance*
+*Decision Moment Graph, An open standard for decision governance*
 
-*© 2026 SYNTHAI TECH PTY LTD — Released under MIT License*
+*© 2026 SYNTHAI TECH PTY LTD, Released under MIT License*

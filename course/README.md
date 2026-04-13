@@ -2,7 +2,7 @@
 
 > **Store decision moments, not raw chats, objects or data.**
 
-A self-paced course to master Decision Moment Graph — the open standard for decision governance.
+A self-paced course to master Decision Moment Graph, the open standard for decision governance.
 
 ---
 

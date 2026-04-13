@@ -9,14 +9,14 @@
 
 You've learned all 8 DMG primitives:
 
-✅ MEMO — The decision brief  
-✅ MOMENT — Provenance trail  
-✅ RAMP — Proportional governance  
-✅ DOORS — Reversibility checklist  
-✅ DISSENT — Structured disagreement  
-✅ TRACE — Evidence links  
-✅ COMMIT — State transitions  
-✅ OUTCOME — Learning loops  
+✅ MEMO, The decision brief  
+✅ MOMENT, Provenance trail  
+✅ RAMP, Proportional governance  
+✅ DOORS, Reversibility checklist  
+✅ DISSENT, Structured disagreement  
+✅ TRACE, Evidence links  
+✅ COMMIT, State transitions  
+✅ OUTCOME, Learning loops  
 
 Now it's time to put them all together on a **real decision**.
 

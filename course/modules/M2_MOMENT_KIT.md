@@ -163,4 +163,4 @@ When you have MOMENT:
 
 ## Next Step
 
-→ [M3: RAMP-KIT — Proportional Governance](./M3_RAMP_KIT.md)
+→ [M3: RAMP-KIT, Proportional Governance](./M3_RAMP_KIT.md)

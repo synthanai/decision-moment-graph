@@ -12,7 +12,7 @@ It ensures that AI systems, humans, and auditors can verify *how* a decision was
 
 ## 🏛️ The MERIT Framework
 
-DMS enforces the **MERIT** criteria. If a decision record does not satisfy these, it is not a "Decision" — it is just a suggestion.
+DMS enforces the **MERIT** criteria. If a decision record does not satisfy these, it is not a "Decision", it is just a suggestion.
 
 ### 1. Measured (M)
 *Requirement*: Must explicitly state what will happen if this decision works.

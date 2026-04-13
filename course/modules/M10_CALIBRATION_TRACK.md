@@ -184,7 +184,7 @@ Over time, patterns emerge:
 
 ## Calibration as Skill
 
-Good judgment isn't magic—it's trained through:
+Good judgment isn't magic, it's trained through:
 
 1. **Prediction forcing**: No "I don't know"
 2. **Feedback loops**: Compare predictions to outcomes

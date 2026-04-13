@@ -89,7 +89,7 @@ RAMP solves this by indexing rigor to **time-to-reverse**.
 ## Principle 4: Reversibility Must Be Concrete
 
 ### Statement
-A decision without a rollback plan is not a decision—it's a **gamble**.
+A decision without a rollback plan is not a decision, it's a **gamble**.
 
 ### Rationale
 Hope is not a strategy. "We can always reverse it" is meaningless unless:
@@ -115,7 +115,7 @@ Hope is not a strategy. "We can always reverse it" is meaningless unless:
 ## Principle 5: Predictions Are Testable
 
 ### Statement
-If you cannot state **what you expect to happen** with **what confidence**, you are not deciding—you are **hoping**.
+If you cannot state **what you expect to happen** with **what confidence**, you are not deciding, you are **hoping**.
 
 ### Rationale
 Predictions make judgment measurable. Without them:
@@ -170,7 +170,7 @@ OUTCOME checks create a feedback loop:
 ## Principle 7: Provenance Is Non-Negotiable
 
 ### Statement
-Every change to a decision must be **logged, timestamped, and attributable**. MOMENT makes decisions inspectable—technically and legally.
+Every change to a decision must be **logged, timestamped, and attributable**. MOMENT makes decisions inspectable, technically and legally.
 
 ### Rationale
 Without provenance:

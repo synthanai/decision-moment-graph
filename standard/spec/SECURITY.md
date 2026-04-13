@@ -37,32 +37,32 @@ This document defines the security model for Decision Moment Graph (DMG) impleme
 
 #### T1: Event Tampering
 - **Threat**: Modify historical events to change decision narrative
-- **Impact**: Critical — undermines auditability
+- **Impact**: Critical, undermines auditability
 - **Mitigation**: Hash chain integrity (see §4)
 
 #### T2: Event Insertion
 - **Threat**: Insert fabricated events into MOMENT
-- **Impact**: High — false attribution
+- **Impact**: High, false attribution
 - **Mitigation**: Append-only log, signature verification (see §5)
 
 #### T3: Event Deletion
 - **Threat**: Remove unfavorable events from history
-- **Impact**: High — loss of accountability
+- **Impact**: High, loss of accountability
 - **Mitigation**: Append-only log, external witnesses
 
 #### T4: Identity Spoofing
 - **Threat**: Claim actions were taken by different actor
-- **Impact**: High — accountability failure
+- **Impact**: High, accountability failure
 - **Mitigation**: Event signing (see §5)
 
 #### T5: Replay Attack
 - **Threat**: Replay signed events in different context
-- **Impact**: Medium — confusion, denial of service
+- **Impact**: Medium, confusion, denial of service
 - **Mitigation**: Unique nonces, timestamp validation
 
 #### T6: Information Disclosure
 - **Threat**: Unauthorized access to sensitive decisions
-- **Impact**: Medium-High — confidentiality breach
+- **Impact**: Medium-High, confidentiality breach
 - **Mitigation**: Access control (see §6)
 
 ---
