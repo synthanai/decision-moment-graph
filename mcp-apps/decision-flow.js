@@ -94,7 +94,7 @@ export function generateDecisionFlowUI(options = {}) {
         }
         
         .phase-row.active {
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+            box-shadow: none;
         }
         
         .phase-row.complete {
@@ -123,7 +123,7 @@ export function generateDecisionFlowUI(options = {}) {
             font-size: 0.7rem;
             padding: 2px 8px;
             border-radius: 10px;
-            background: rgba(255,255,255,0.1);
+            background: transparent;
         }
         
         .phase-status.pending { color: var(--text-muted); }
@@ -133,8 +133,8 @@ export function generateDecisionFlowUI(options = {}) {
         .merit-badge {
             margin-top: 16px;
             padding: 12px;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: transparent;
+            border: 1px solid  transparent;
             border-radius: 8px;
             text-align: center;
         }

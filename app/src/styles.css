@@ -5,7 +5,7 @@
   /* Colors */
   --bg-primary: #0a0a0f;
   --bg-secondary: #12121a;
-  --bg-tertiary: #1a1a24;
+  --bg-tertiary: #F0F0F0;
   --bg-card: #16161f;
   --bg-hover: #1e1e2a;
 
@@ -21,8 +21,8 @@
   --warning: #eab308;
   --error: #ef4444;
 
-  --border: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(99, 102, 241, 0.5);
+  --border:   transparent;
+  --border:   transparent;
 
   /* RAMP Colors */
   --ramp-1: #22c55e;
@@ -49,9 +49,9 @@
   --radius-lg: 16px;
 
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 4px #0F0F0F;
+  --shadow-md: 0 4px 12px #0F0F0F;
+  --shadow-lg: 0 8px 24px #0F0F0F;
   --shadow-glow: 0 0 20px var(--accent-glow);
 }
 
@@ -468,7 +468,7 @@ body {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: #0F0F0F;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -633,7 +633,7 @@ body {
 
 .btn-spar:hover {
   background: linear-gradient(135deg, #fb923c, #f87171);
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+  box-shadow: none;
 }
 
 .spar-modal .modal-content {
@@ -641,7 +641,7 @@ body {
 }
 
 .spar-header {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1));
+  background: transparent;
 }
 
 .spar-mode-selector {
@@ -676,7 +676,7 @@ body {
 }
 
 .spar-mode-btn.active {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(239, 68, 68, 0.2));
+  background: transparent;
   border-color: #f97316;
   color: #fb923c;
 }
